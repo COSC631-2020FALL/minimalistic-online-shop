@@ -23,4 +23,13 @@ services:
       - 3000:3000
     volumes:
       - ./:/app
-    # privileged: true # Privileged mode could be required to run this container under Windows
+    privileged: true # Privileged mode could be required to run this container under Windows
+
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      - PMA_ARBITRARY=1
+
