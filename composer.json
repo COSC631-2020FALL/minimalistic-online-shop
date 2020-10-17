@@ -25,7 +25,16 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "github-protocols": [
+            "https,ssh"
+        ]
+    },
+    "repositories": {
+        "packagist": {
+        "type": "composer",
+        "url": "https://packagist.org"
+        }
     },
     "extra": {
         "laravel": {
