@@ -22,7 +22,6 @@ class CreateReviewsTable extends Migration
 	    $table->timestamps();
 	});
 
-	DB::statement("ALTER TABLE reviews ADD review TEXT");
     }
 
     /**
