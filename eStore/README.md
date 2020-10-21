@@ -1,4 +1,4 @@
-step 1 PowerShell cd c:\xampp\mysql\bin
+step 1 Start Apache and MySql in xampp, and in PowerShell cd c:\xampp\mysql\bin
 step 2 C:\xampp\mysql\bin>.\mysql -u root
 step 3 MariaDB>create database eStore; 
 step 4 MariaDB>use eStore;
