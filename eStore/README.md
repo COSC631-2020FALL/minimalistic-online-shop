@@ -4,6 +4,7 @@ step 3 MariaDB>create database eStore;
 step 4 MariaDB>use eStore;
 step 5 copy eStore.sql to C:\xampp\mysql\bin>
 step 6 MariaDB>source eStore.sql
+http://localhost:81/eStore/index.php
 
 http://localhost:81/phpmyadmin/
 
