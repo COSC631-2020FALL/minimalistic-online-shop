@@ -47,5 +47,12 @@ class User extends Authenticatable
         return $this->hasMany(Product::class, 'owner_id');
     }
 
+    /**
+     * Returns all of this users past reviews
+     */
+    public function reviews(){
+        return $this->hasMany(Review::class, 'reviewer_id');
+    }
+
 
 }
