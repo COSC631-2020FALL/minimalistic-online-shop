@@ -13,7 +13,7 @@ $factory->define(Review::class, function (Faker $faker) {
     return [
         'reviewer_id' => $review_id,
         'product_id'  => $product_id,
-        'review'      => $faker-> realText($maxNbChars = 200, $indexSize = 2),
-        'rating'      => $faker->random_int(0,5),
+        'review'      => $faker->text($maxNbChars = 255),
+        'rating'      => rand(0, 5)
     ];
 });
