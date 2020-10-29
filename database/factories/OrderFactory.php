@@ -13,7 +13,7 @@ $factory->define(Order::class, function (Faker $faker) {
     
     return [
         'product_id' => $product_id,
-	'invoice_id' => $order_id,
-	'user_id'    => $user_id
+	    'invoice_id' => $order_id,
+	    'user_id'    => $user_id
     ];
 });
