@@ -9,7 +9,7 @@ $factory->define(Order::class, function (Faker $faker) {
 
     $product_id = App\Product::all()->random()->id;
     $order_id   = App\Invoice::all()->random()->id;
-    $user_id    = App\Order::all()->random()->id;
+    $user_id    = App\User::all()->random()->id;
     
     return [
         'product_id' => $product_id,

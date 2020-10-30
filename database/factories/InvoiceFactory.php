@@ -11,6 +11,6 @@ $factory->define(Invoice::class, function (Faker $faker) {
 	
     return [
         'buyer_id' => $buyer_id,
-        'total'    => $faker->random()
+        'total'    => rand(1,1000)
     ];
 });
