@@ -12,6 +12,6 @@ $factory->define(Cart::class, function (Faker $faker) {
     return [
         'user_id' => $user_id,
         'orders_id' => $order_id,
-        'quantity' => $faker->rand()
+        'quantity' => rand(1, 50)
     ];
 });
