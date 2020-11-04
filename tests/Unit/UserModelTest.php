@@ -9,7 +9,7 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 
 
-class RelationshipTest extends TestCase
+class UserModelTest extends TestCase
 {
 
     use RefreshDatabase;
