@@ -12,8 +12,6 @@ use Illuminate\Foundation\Testing\WithFaker;
 class UserModelTest extends TestCase
 {
 
-    use RefreshDatabase;
-
     public function test_user_has_many_orders(){
 
         // generate data (user orders)
