@@ -1,5 +1,6 @@
 <?php
 
+use App\ProductTags;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,5 +19,6 @@ class DatabaseSeeder extends Seeder
         $this->call(InvoiceSeeder::class);
         $this->call(OrderSeeder::class);
         $this->call(CartSeeder::class);
+        $this->call(ProductSeeder::class);
     }
 }
