@@ -32,8 +32,6 @@ class ProductTagsTest extends TestCase
             'product_id' => $product3->id,
             'tag_id' => $tag->id
         ]);
-
-        // dd(Product::all());
         // test
         $this->assertGreaterThanOrEqual(3, $tag->products->count());
     }
