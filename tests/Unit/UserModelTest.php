@@ -35,16 +35,7 @@ class UserModelTest extends TestCase
         factory(Review::class, 3)->create(['reviewer_id' => $user->id]);
         $reviews = $user->reviews;
 
-        // test/assert the if the outcome is as expected
+        // test/assert that if the outcome is as expected
         $this->assertEquals(3, $reviews->count());
     }
-    /*
-    public function test_user_has_one_cart() {
-        //grab rand user
-        $user = User::all()->random();
-        $cart = $user->cart;
-        // test/assert the if the outcome is as expected
-        //$this->assertEquals(1,$cart->count());
-        $this->assertEquals(1,1);
-    }*/
 }
