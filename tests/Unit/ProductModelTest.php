@@ -5,7 +5,8 @@ namespace Tests\Unit;
 use App\Product;
 use App\Review;
 use App\Order;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use App\ProductTags;
+use App\Tag;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 
@@ -30,9 +31,35 @@ class ProductModelTest extends TestCase
     //Create product and review, makes sure user exists
     public function test_product_is_reviewed_by_registered_users() {
         $product = factory(Product::class)->create();
-        $review = factory(Review::class)->create([ 'product_id' => $product->id ]);  
+        $review = factory(Review::class)->create([ 'product_id' => $product->id ]);
         $user    = $review->review_owner;
         $this->assertNotNull($user );
+    }
+
+    public function test_product_belongs_to_many_tags(){
+        // generate data
+        $product = factory(Product::class)->create();
+
+        $tag1 = factory(Tag::class)->create();
+        $tag2 = factory(Tag::class)->create();
+        $tag3 = factory(Tag::class)->create();
+
+        factory(ProductTags::class)->create([
+            'product_id' => $product->id,
+            'tag_id' => $tag1->id
+        ]);
+
+        factory(ProductTags::class)->create([
+            'product_id' => $product->id,
+            'tag_id' => $tag2->id
+        ]);
+
+        factory(ProductTags::class)->create([
+            'product_id' => $product->id,
+            'tag_id' => $tag3->id
+        ]);
+        // test
+        $this->assertGreaterThanOrEqual(3, $product->tags->count());
     }
 
 }
