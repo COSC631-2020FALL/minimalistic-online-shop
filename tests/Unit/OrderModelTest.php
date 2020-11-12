@@ -10,6 +10,10 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 class OrderModelTest extends TestCase
 {
+    public function test_order_belongs_to_one_users() {
+        $order = factory(Order::class)->create();
+        $this->assertNotNull($order->user);
+    }
 
     public function test_order_belongs_to_many_products(){
         // generate data

@@ -53,11 +53,5 @@ class User extends Authenticatable
     public function reviews(){
         return $this->hasMany(Review::class, 'reviewer_id');
     }
-    /**
-     * Return the user's cart
-     */
-    public function cart() {
-        return $this->hasOne(Cart::class);
-    }
 
 }
