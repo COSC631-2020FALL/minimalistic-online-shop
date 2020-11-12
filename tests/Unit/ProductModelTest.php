@@ -14,11 +14,13 @@ class ProductModelTest extends TestCase
 {
 
     //Checks for orders for a product
-    public function test_has_orders() {
+    public function test_product_belongs_to_many_orders() {
         $product = factory(Product::class)->create();
-        factory(Order::class)->create([ 'product_id' => $product->id]);
-        $orders = $product->orders;
-        $this->assertGreaterThanOrEqual(1,$orders->count());
+        $orders = factory(Order::class, 3)->create();
+
+        $product->orders()->sync($orders);
+
+        $this->assertEquals(3,$product->orders->count());
     }
 
     //Checks for user ownership of product
@@ -40,24 +42,10 @@ class ProductModelTest extends TestCase
         // generate data
         $product = factory(Product::class)->create();
 
-        $tag1 = factory(Tag::class)->create();
-        $tag2 = factory(Tag::class)->create();
-        $tag3 = factory(Tag::class)->create();
+        $tags = factory(Tag::class, 3)->create();
 
-        factory(ProductTags::class)->create([
-            'product_id' => $product->id,
-            'tag_id' => $tag1->id
-        ]);
+        $product->tags()->sync($tags);
 
-        factory(ProductTags::class)->create([
-            'product_id' => $product->id,
-            'tag_id' => $tag2->id
-        ]);
-
-        factory(ProductTags::class)->create([
-            'product_id' => $product->id,
-            'tag_id' => $tag3->id
-        ]);
         // test
         $this->assertGreaterThanOrEqual(3, $product->tags->count());
     }
