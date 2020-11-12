@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     public function orders(){
-        return $this->hasMany(Order::class);
+        return $this->belongsToMany(Order::class,'product_orders','product_id');
     }
 
     public function owner(){
