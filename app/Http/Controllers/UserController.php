@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Cart;
+use App\User;
 use Illuminate\Http\Request;
 
-class CartController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,8 @@ class CartController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::all();
+        return view('user.index', ['users' => $users]);
     }
 
     /**
@@ -41,33 +42,33 @@ class CartController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Cart  $cart
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Cart $cart)
+    public function show(User $user)
     {
-        //
+        return view('user.show', ['user' => $user]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Cart  $cart
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Cart $cart)
+    public function edit(User $user)
     {
-        //
+        return view('user.edit', ['user' => $user]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Cart  $cart
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cart $cart)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,10 +76,10 @@ class CartController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Cart  $cart
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cart $cart)
+    public function destroy($id)
     {
         //
     }
