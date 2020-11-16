@@ -8,7 +8,7 @@
                     <div class="card-header">Edit {{$product->name}}</div>
                     <div class="card-body">
                         <form action="{{ route('products.update', $product->id ) }}" method="POST">
-                            
+
                                 @csrf
                                 @method('PUT')
 
@@ -58,8 +58,13 @@
                                         @enderror
                                     </div>
                                 </div>
-                                
-                                <button class="btn btn-primary" type="submit">UPDATE</button>
+
+
+                                <div class="form-group row mb-0">
+                                    <div class="col-md-8 offset-md-4">
+                                        <button class="btn btn-primary" type="submit">UPDATE</button>
+                                    </div>
+                                </div>
                             </div>
                         </form>
                     </div>

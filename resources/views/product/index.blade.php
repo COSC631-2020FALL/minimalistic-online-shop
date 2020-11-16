@@ -6,7 +6,10 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Products</div>
+                    <div class="card-header">
+                        <span>Products</span>
+                        <a href="{{ route('products.create') }}" class="btn btn-primary float-right">ADD PRODUCT</a>
+                    </div>
 
                     <div class="card-body">
                        <table>

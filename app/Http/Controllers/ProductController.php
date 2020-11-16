@@ -79,10 +79,10 @@ class ProductController extends Controller
         ];
         $this->validate($request,$rules);
         $product->update($request->all());
-        
+
         $product->save();
 
-        return redirect(route('products.index'));
+        return redirect()->route('products.index');
     }
 
     /**
@@ -94,6 +94,6 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
-        return redirect(route('products.index'));
+        return redirect()->route('products.index');
     }
 }
