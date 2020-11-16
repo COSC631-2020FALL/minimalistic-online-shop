@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+    protected $fillable = [
+        'name', 'description', 'img_url','price','owner_id','tag_id'
+    ];
+
     public function orders(){
         return $this->belongsToMany(Order::class,'product_orders','product_id');
     }

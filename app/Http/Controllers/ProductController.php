@@ -58,7 +58,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view('product.edit',['product' => $product]);
     }
 
     /**
@@ -70,7 +70,19 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        //return view('product.index');//redirect(route('products.index'));
+        $rules = [
+            'name'=>'required',
+            'description'=>'string|max:255',
+            'img_url'=>'required|active_url',
+            'price'=>'required|numeric|gt:0|numeric|lt:10000'
+        ];
+        $this->validate($request,$rules);
+        $product->update($request->all());
+        
+        $product->save();
+
+        return redirect(route('products.index'));
     }
 
     /**
@@ -81,6 +93,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return redirect(route('products.index'));
     }
 }

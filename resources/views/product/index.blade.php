@@ -17,6 +17,7 @@
                             <th>Price</th>
                             <th>Seller</th>
                             <th>Tags</th>
+                            <th>Delete/Edit</th>
                         </tr>
                         @foreach ($products as $product)
                         <tr>
@@ -26,6 +27,14 @@
                             <td>{{ $product->price }}</td>
                             <td>{{ $product->owner_id }}</td>
                             <td>{{ $product->tag_id }}</td>
+                            <td>
+                                <form action="{{route('products.destroy', $product->id)}}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">DELETE</button>
+                                </form>
+                                <a href="{{route('products.edit',$product->id)}}" class="btn btn-primary float-right">EDIT</a>
+                            </td>
                         </tr>
                         @endforeach
                        </table>
