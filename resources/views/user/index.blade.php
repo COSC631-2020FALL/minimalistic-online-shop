@@ -5,9 +5,12 @@
 
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-10">
+            <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Registered Users</div>
+                    <div class="card-header">
+                        <span>Registered Users</span>
+                        <a href="{{ route('users.create') }}" class="btn btn-primary float-right">CREATE USER</a>
+                    </div>
 
                     <div class="card-body">
                        <table>
@@ -24,15 +27,15 @@
                                 <td>{{ $user->name}}</td>
                                 <td>{{ $user->email}}</td>
                                 <td>{{ $user->address_1}}</td>
-                                <td class="btn-toolbar" >
+                                <td>
 
                                     <form action="{{ route('users.destroy', $user->id) }}" method="post">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">DELETE</button>
+                                        <button type="submit" class="btn btn-danger" >DELETE</button>
                                     </form>
 
-                                    <a style="padding-left: 15px" href="{{ route('users.edit', $user->id) }}" class="btn btn-primary">EDIT</a>
+                                    <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary float-right">EDIT</a>
 
                                 </td>
                             </tr>
