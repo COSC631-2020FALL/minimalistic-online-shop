@@ -2,7 +2,6 @@
 
 @section('content')
 
-    {{--  TODO: Implement form  --}}
 
     <div class="container">
         <div class="row justify-content-center">
@@ -13,7 +12,7 @@
                     <div class="card-body">
 
                           {{--  TODO: Implement form  --}}
-                        <form action="users.store" method="POST">
+                        <form action="{{ route('users.store') }}" method="POST">
 
 
                             <button class="btn btn-primary" type="submit">SUBMIT</button>
