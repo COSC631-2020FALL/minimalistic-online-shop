@@ -68,9 +68,22 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        // validate
+        $rules = [
+            'name' => 'required',
+            'email' => 'required',
+            'address_1' => 'required'
+        ];
+
+        $this->validate($request, $rules);
+
+        $user->update($request->all());
+
+        $user->save();
+
+        return redirect()->route('users.index');
     }
 
     /**
