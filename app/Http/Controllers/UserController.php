@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+    public function __construct(){
+        $this->middleware(['auth:web'])->only(['create', 'edit', 'show']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -58,7 +62,11 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('user.show', ['user' => $user]);
+
+        if ($this->is_logged_in_user($user))
+            return view('user.show', ['user' => $user]);
+
+        return redirect()->back();
     }
 
     /**
