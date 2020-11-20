@@ -25,3 +25,4 @@ Route::resource('users', 'UserController');
 Route::resource('products', 'ProductController');
 Route::resource('tags', 'TagController');
 Route::resource('orders', 'OrderController');
+Route::resource('reviews', 'ReviewController');
