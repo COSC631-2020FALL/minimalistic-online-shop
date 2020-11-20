@@ -20,7 +20,6 @@ class CreateProductsTable extends Migration
             $table->string('img_url');
             $table->float('price');
             $table->integer('owner_id')->unsigned();
-            $table->integer('tag_id')->unsigned();
             $table->timestamps();
         });
     }
