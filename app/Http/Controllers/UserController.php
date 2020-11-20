@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+    public function __construct(){
+        $this->middleware(['auth:web'])->only(['create', 'edit', 'show']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -36,7 +40,18 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // validate
+        $rules = [
+            'name' => 'required',
+            'email' => 'required',
+            'address_1' => 'required'
+        ];
+
+        $this->validate($request, $rules);
+
+        User::create(array_merge($request->all(), ['password' => bcrypt('secret')]));
+
+        return redirect()->route('users.index');
     }
 
     /**
@@ -47,7 +62,11 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('user.show', ['user' => $user]);
+
+        if ($this->is_logged_in_user($user))
+            return view('user.show', ['user' => $user]);
+
+        return redirect()->back();
     }
 
     /**
