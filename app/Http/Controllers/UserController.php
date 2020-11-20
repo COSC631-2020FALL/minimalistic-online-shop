@@ -36,7 +36,18 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // validate
+        $rules = [
+            'name' => 'required',
+            'email' => 'required',
+            'address_1' => 'required'
+        ];
+
+        $this->validate($request, $rules);
+
+        User::create(array_merge($request->all(), ['password' => bcrypt('secret')]));
+
+        return redirect()->route('users.index');
     }
 
     /**
