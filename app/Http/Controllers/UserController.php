@@ -77,7 +77,10 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('user.edit', ['user' => $user]);
+        if ($this->is_logged_in_user($user)){
+            return view('user.edit', ['user' => $user]);
+        }
+        return redirect()->back();
     }
 
     /**
@@ -89,20 +92,24 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        // validate
-        $rules = [
-            'name' => 'required',
-            'email' => 'required',
-            'address_1' => 'required'
-        ];
+        if ($this->is_logged_in_user($user)){
+            // validate
+            $rules = [
+                'name' => 'required',
+                'email' => 'required',
+                'address_1' => 'required'
+            ];
 
-        $this->validate($request, $rules);
+            $this->validate($request, $rules);
 
-        $user->update($request->all());
+            $user->update($request->all());
 
-        $user->save();
+            $user->save();
 
-        return redirect()->route('users.index');
+            return redirect()->route('users.index');
+        }
+
+        return redirect()->back();
     }
 
     /**
