@@ -13,6 +13,16 @@
 
 
                           {{ $order }}
+                            <hr>
+                          {{ $order->user }}
+                            <hr>
+                            @if ($order->products->count() == 0)
+                                <p>This order does not have any products yet. </p>
+                            @else
+                                {{ $order->products }}
+                            @endif
+
+
 
 
                     </div>
