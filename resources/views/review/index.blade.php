@@ -25,7 +25,7 @@
                             @foreach ($reviews as $review)
                             <tr>
                                 <td>{{ $review->review_owner->name }}</td>
-                                <td>{{ $review->for_product['name'] }}</td>
+                                <td>{{ $review->for_product->name }}</td>
                                 <td>{{ $review->rating}}</td>
                                 <td>{{ $review->review}}</td>
                                 <td>

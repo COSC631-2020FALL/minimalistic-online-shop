@@ -88,7 +88,8 @@
                     <a href="{{ route('users.index') }}">Users</a>
                     <a href="{{ route('products.index') }}">Products</a>
                     <a href="{{ route('tags.index') }}">Tags</a>
-                    <a href="{{ route('orders.index') }}">Order</a>
+                    <a href="{{ route('orders.index') }}">Orders</a>
+                    <a href="{{ route('reviews.index') }}">Reviews</a>
                 </div>
             </div>
         </div>
