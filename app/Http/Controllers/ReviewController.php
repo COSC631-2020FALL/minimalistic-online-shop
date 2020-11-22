@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Review;
+use App\Product;
+use App\User;
 use Illuminate\Http\Request;
 
 class ReviewController extends Controller
@@ -25,7 +27,9 @@ class ReviewController extends Controller
      */
     public function create()
     {
-        return view('review.create');
+        $products = Product::all();
+        $users     = User::all();
+        return view('review.create',['users' => $users , 'products' => $products]);
     }
 
     /**
@@ -36,7 +40,17 @@ class ReviewController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $rules = [
+            'product_id' => 'numeric|required', //might be bad
+            'reviewer_id' => 'numeric|required',//def bad, need to validate that it is logged user
+            'rating'=>'numeric|gt:0|lt:6|required',
+            'review'=>'string|max:255'
+        ];
+
+        $this->validate($request, $rules);
+        Review::create($request->all());
+
         return redirect()->route('reviews.index');
     }
 
@@ -73,7 +87,7 @@ class ReviewController extends Controller
     {
         
         $rules = [
-            'rating'=>'numeric|gt:-1|lt:5|required',
+            'rating'=>'numeric|gt:0|lt:6|required',
             'review'=>'string|max:255'
         ];
 
