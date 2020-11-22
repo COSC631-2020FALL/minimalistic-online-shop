@@ -12,6 +12,6 @@ class ProdactTagSeeder extends Seeder
      */
     public function run()
     {
-        factory(ProductTags::class, 3);
+        factory(ProductTags::class, 20);
     }
 }
