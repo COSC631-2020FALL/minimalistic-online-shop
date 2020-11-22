@@ -16,7 +16,7 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        $reviews = Review::all();
+        $reviews = Review::with(['review_owner'])->get();
         return view('review.index', ['reviews' => $reviews]);
     }
 
@@ -85,7 +85,7 @@ class ReviewController extends Controller
      */
     public function update(Request $request, Review $review)
     {
-        
+
         $rules = [
             'rating'=>'numeric|gt:0|lt:6|required',
             'review'=>'string|max:255'
