@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Review extends Model
 {
     protected $fillable = [
-        'rating','ownereviewr_id'
+        'rating','review'
     ];
     /**
      * returns the user who created this review

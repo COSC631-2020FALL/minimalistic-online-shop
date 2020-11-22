@@ -70,7 +70,17 @@ class ReviewController extends Controller
      */
     public function update(Request $request, Review $review)
     {
-        //
+        
+        $rules = [
+            'rating'=>'numeric|required',
+            'review'=>'string|max:255'
+        ];
+
+        $this->validate($request,$rules);
+        $review->update($request->all());
+        $review->save();
+
+        return redirect()->route('reviews.index');
     }
 
     /**
@@ -81,6 +91,7 @@ class ReviewController extends Controller
      */
     public function destroy(Review $review)
     {
-        //
+        $review->delete();
+        return redirect()->route('reviews.index');
     }
 }
