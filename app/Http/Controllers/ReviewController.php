@@ -25,7 +25,7 @@ class ReviewController extends Controller
      */
     public function create()
     {
-        //
+        return view('review.create');
     }
 
     /**
@@ -37,6 +37,7 @@ class ReviewController extends Controller
     public function store(Request $request)
     {
         //
+        return redirect()->route('reviews.index');
     }
 
     /**
@@ -47,7 +48,7 @@ class ReviewController extends Controller
      */
     public function show(Review $review)
     {
-        //
+        return view('review.show',['review' => $review]);
     }
 
     /**
@@ -72,7 +73,7 @@ class ReviewController extends Controller
     {
         
         $rules = [
-            'rating'=>'numeric|required',
+            'rating'=>'numeric|gt:-1|lt:5|required',
             'review'=>'string|max:255'
         ];
 
