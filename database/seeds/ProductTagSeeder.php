@@ -3,7 +3,7 @@
 use App\ProductTags;
 use Illuminate\Database\Seeder;
 
-class ProdactTagSeeder extends Seeder
+class ProductTagSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,6 +12,6 @@ class ProdactTagSeeder extends Seeder
      */
     public function run()
     {
-        factory(ProductTags::class, 20);
+        factory(App\ProductTags::class, 20)->create();
     }
 }
