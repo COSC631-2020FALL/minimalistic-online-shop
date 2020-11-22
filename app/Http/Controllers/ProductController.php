@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -25,7 +27,13 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $user = Auth::user();
+        if( $user==null) {
+            $users = User::all();
+            return view('product.create',['user' => $user ,'users' => $users ]);
+        } else {
+            return view('product.create',['user' => $user ]);
+        }
     }
 
     /**
@@ -36,7 +44,19 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $rules = [
+            'name' => 'string|max:255',
+            'description' => 'string|max:255',
+            'img_url'=>'required|active_url',
+            'price'=>'required|numeric|gt:0|numeric|lt:10000',
+            'owner_id'=>'required'
+        ];
+
+        $this->validate($request, $rules);
+        Product::create($request->all());
+
+        return redirect()->route('products.index');
     }
 
     /**
@@ -47,7 +67,8 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        $reviews = $product->reviews;
+        return view('product.show',['product' => $product,'reviews'=>$reviews]);
     }
 
     /**
