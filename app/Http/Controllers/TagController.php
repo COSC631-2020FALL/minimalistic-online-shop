@@ -14,7 +14,9 @@ class TagController extends Controller
      */
     public function index()
     {
-        //
+        $tags = Tag::all();
+        
+        return view('tag.index', ['tags' => $tags]);
     }
 
     /**
@@ -46,7 +48,7 @@ class TagController extends Controller
      */
     public function show(Tag $tag)
     {
-        //
+        
     }
 
     /**
@@ -80,6 +82,7 @@ class TagController extends Controller
      */
     public function destroy(Tag $tag)
     {
-        //
+        $tag->delete();
+        return redirect()->route('tags.index');
     }
 }
