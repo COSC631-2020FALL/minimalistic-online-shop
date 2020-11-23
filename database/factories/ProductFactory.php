@@ -14,6 +14,7 @@ $factory->define(Product::class, function (Faker $faker) {
         'img_url' => $faker->imageUrl(),
         'price' => $faker->randomFloat($nbMaxDecimals = 2, $min = 0, $max = 20),
         'owner_id' => $owner_id,
+        'quantity' => rand($min = 1, $max = 50),
     ];
 });
 

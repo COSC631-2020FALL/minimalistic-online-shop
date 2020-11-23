@@ -9,43 +9,54 @@
                <div class="card-body">
                           <!-- $product-->
                   <div class="card-body">
-                     <table>
-                        <tr>
-                            <th>ProductName</th>
-                            <th>Description</th>
-                            <th>Picture</th>
-                            <th>Price</th>
-                            <th>Seller</th>
-                            <th>Tags</th>
-                            <th>Delete/Edit</th>
-                        </tr>
-                        <tr>
-                            <td>{{ $product->name }}</td>
-                            <td>{{ $product->description }}</td>
-                            <td><img style="width:8em;height:8em;" src='{{ $product->img_url }}' /></td>
-                            <td>{{ $product->price }}</td>
-                            <td>{{ $product->owner_id }}</td>
-                            <td>{{ $product->tags }}</td>
-                            <td>
-                                <form action="{{route('products.destroy', $product->id)}}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">DELETE</button>
-                                </form>
-                                <a href="{{route('products.edit',$product->id)}}" class="btn btn-primary float-right">EDIT</a>
-                            </td>
-                        </tr>
-                     </table>
+
+                    <div class="col-md-6 float-left">
+                        <img class="rounded float-left" style="position: relative; width:100%;height:100%;" src='{{ $product->img_url }}' />
+                    </div>
+
+
+                    <div class="col-md-6 float-right">
+
+                        <form action="{{route('carts.store', $product->id)}}" method="post">
+                            @csrf
+                            <span class="row">{{ $product->name }}</span>
+                            <br>
+                            <span class="row">{{ $product->description }}</span>
+                            <br>
+                            <span class="row">$ {{ $product->price }}</span>
+                            <br>
+                            <span class="row">
+                                <input type="range" name="quantity" value="{{$product->quantity}}">
+                            </span>
+                            <br>
+                            <span class="row">
+
+                                <button type="submit" class="btn btn-outline-primary">ADD TO CART</button>
+
+                            </span>
+                        </form>
+                    </div>
+
                   </div>
+               </div>
+         </div>
+
+         <hr>
+         <div class="card">
+             <div class="card-header"> Product Reviews </div>
+
+             <div class="card-body">
+
                   @foreach ($reviews as $review)
-                  <div class="card-body">
+                  <div>
                      {{$review}}
                   </div>
                   @endforeach
-               </div>
-            </div>
+             </div>
          </div>
-   </div>
+      </div>
+    </div>
 </div>
+
 
 @endsection

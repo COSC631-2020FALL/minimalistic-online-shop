@@ -48,7 +48,19 @@ class TagController extends Controller
      */
     public function show(Tag $tag)
     {
-        
+        //brings up all tags
+        return view('tag.show',['tag' => $tag]);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Tag  $tag
+     * @return \Illuminate\Http\Response
+     */
+    public function showProductsWithTag(Tag $tag) {
+
+        //return view(products)
     }
 
     /**

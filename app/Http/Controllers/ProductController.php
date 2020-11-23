@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use App\User;
+use App\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -79,7 +80,8 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('product.edit',['product' => $product]);
+        $tags = Tag::all();
+        return view('product.edit',['product' => $product, 'tags' => $tags]);
     }
 
     /**
