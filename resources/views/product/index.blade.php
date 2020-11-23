@@ -29,7 +29,11 @@
                             <td><img style="width:8em;height:8em;" src='{{ $product->img_url }}' /></td>
                             <td>{{ $product->price }}</td>
                             <td>{{ $product->owner_id }}</td>
-                            <td>{{ $product->tag_id }}</td>
+                            <td>
+                            @foreach ($product->tags as $tag)
+                                <a href="{{ route('tags.show',$tag->id)}}">{{ $tag->tag_name}}<a>
+                            @endforeach
+                            </td>
                             <td>
                                 <form action="{{route('products.destroy', $product->id)}}" method="post">
                                     @csrf
