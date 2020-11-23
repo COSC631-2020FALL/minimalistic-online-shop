@@ -26,7 +26,7 @@ class TagController extends Controller
      */
     public function create()
     {
-        //
+        return view('tag.create');
     }
 
     /**
@@ -37,7 +37,14 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+            'tag_name'=>'required|string|max:255',
+        ];
+
+        $this->validate($request, $rules);
+        Tag::create($request->all());
+        
+        return redirect()->route('tags.index');
     }
 
     /**
@@ -71,7 +78,7 @@ class TagController extends Controller
      */
     public function edit(Tag $tag)
     {
-        //
+        return view('tag.edit',['tag' => $tag]);
     }
 
     /**
@@ -83,7 +90,15 @@ class TagController extends Controller
      */
     public function update(Request $request, Tag $tag)
     {
-        //
+        $rules = [
+            'tag_name'=>'required|string|max:255',
+        ];
+        $this->validate($request,$rules);
+        $tag->update($request->all());
+
+        $tag->save();
+
+        return redirect()->route('tags.index');
     }
 
     /**
