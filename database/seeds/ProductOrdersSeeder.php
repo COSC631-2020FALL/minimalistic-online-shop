@@ -1,5 +1,6 @@
 <?php
 
+use App\ProductOrders;
 use Illuminate\Database\Seeder;
 
 class ProductOrdersSeeder extends Seeder
