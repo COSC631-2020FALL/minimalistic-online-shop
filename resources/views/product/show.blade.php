@@ -41,15 +41,25 @@
                         </tr>
                      </table>
                   </div>
+               </div>
+         </div>
+
+         <hr>
+         <div class="card">
+             <div class="card-header"> Product Reviews </div>
+
+             <div class="card-body">
+
                   @foreach ($reviews as $review)
-                  <div class="card-body">
+                  <div>
                      {{$review}}
                   </div>
                   @endforeach
-               </div>
-            </div>
+             </div>
          </div>
-   </div>
+      </div>
+    </div>
 </div>
+
 
 @endsection

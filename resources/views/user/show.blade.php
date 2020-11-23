@@ -23,6 +23,15 @@
                             </div>
                     </div>
                 </div>
+                <hr>
+                <div class="card">
+
+                    <div class="card-header">Order History</div>
+
+                    <div class="card-body">
+                        {{$user->orders}}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
