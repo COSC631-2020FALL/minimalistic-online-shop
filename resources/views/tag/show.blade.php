@@ -13,7 +13,7 @@
                             <div class="form-group row mb-0">
                                 <div class="col-md-8 offset-md-4">
                                    <a href="{{ route("tags.edit", $tag->id) }}">
-                                        <button class="btn btn-primary" type="submit">EDIT</button>
+                                        <button class="btn btn-primary" type="submit">EDIT TAG</button>
                                     </a>
                                 </div>
                             </div>
