@@ -25,8 +25,11 @@
 
                     <div class="card-body">
 
-                        {{ $tag->products }}
-
+                        <ul class="list-group list-group-flush">
+                            @foreach ($tag->products as $product)
+                                <li class="list-group-item"> <a href="{{ route('products.show', $product->id)}}"> {{ $product->name }} </a> </li>
+                            @endforeach
+                        </ul>
                     </div>
                 </div>
             </div>
