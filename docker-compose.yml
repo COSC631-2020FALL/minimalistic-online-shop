@@ -22,7 +22,7 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - ./:/app
+      - ./:/app:consistent
     privileged: true # Privileged mode could be required to run this container under Windows
 
   phpmyadmin:
