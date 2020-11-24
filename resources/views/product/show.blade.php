@@ -14,9 +14,12 @@
              <div class="card-body">
 
                   @foreach ($reviews as $review)
-                  <div>
-                     {{$review}}
-                  </div>
+
+                    <blockquote class="blockquote mb-0">
+                        <p>{{ $review->review }}.</p>
+                        <footer class="blockquote-footer">Reviewed by <cite title="Source Title"> {{ $review->review_owner->name }} </cite></footer>
+                    </blockquote>
+
                   @endforeach
              </div>
          </div>
