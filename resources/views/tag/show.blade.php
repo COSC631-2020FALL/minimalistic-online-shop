@@ -19,8 +19,19 @@
                             </div>
                     </div>
                 </div>
+                <hr>
+                <div class="card">
+                    <div class="card-header">Tagged Products</div>
+
+                    <div class="card-body">
+
+                        {{ $tag->products }}
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+</div>
 
 @endsection
