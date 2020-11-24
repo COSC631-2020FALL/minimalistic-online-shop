@@ -26,8 +26,12 @@
                     <div class="card-header">Order History</div>
 
                     <div class="card-body">
-                        {{$user->orders}}
+
+                        @each('components.order', $user->orders, 'order')
+
                     </div>
+
+
                 </div>
             </div>
         </div>

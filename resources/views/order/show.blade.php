@@ -11,7 +11,7 @@
 
                     <div class="card-body">
 
-                          {{ $order }}
+                          @include('components.order')
 
                     </div>
                 </div>
@@ -30,10 +30,14 @@
 
                     <div class="card-body">
                         @if ($order->products->count() == 0)
-                                <p>This order does not have any products yet. </p>
-                            @else
-                                {{ $order->products }}
-                            @endif
+                            <p>This order does not have any products yet. </p>
+                        @else
+                            <ul class="list-group list-group-flush">
+                                @foreach ($order->products as $product)
+                                    <li class="list-group-item"> <a href="{{ route("products.show", $product->id) }}">{{ $product->name }}</a> </li>
+                                @endforeach
+                            </ul>
+                        @endif
                     </div>
                 </div>
             </div>
