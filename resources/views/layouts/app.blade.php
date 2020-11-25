@@ -33,7 +33,9 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        <div class="input-group">
+                            <input class="form-control" placeholder="Search" aria-label="With textarea"></input>
+                        </div>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

@@ -1,97 +1,26 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>{{ env('APP_NAME') }}</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
+@extends('layouts.app')
+@section('content')
     <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
+        <div class="container">
+            <div class="jumbotron">
+                <img data-src="holder.js/100px250" class="img-fluid" alt="100%x250" style="height: 250px; width: 100%; display: block;" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22895%22%20height%3D%22250%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20895%20250%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17601576a73%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A45pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17601576a73%22%3E%3Crect%20width%3D%22895%22%20height%3D%22250%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22332.390625%22%20y%3D%22145.165625%22%3E895x250%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true">
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    @foreach($products as $product)
+                    <div class="col-md-6">
+                        @include('components.product')
+                    </div>
+                    @endforeach
                 </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    {{ env('APP_NAME')}}
-                </div>
-
-                <div class="links">
-                    <a href="{{ route('users.index') }}">Users</a>
-                    <a href="{{ route('products.index') }}">Products</a>
-                    <a href="{{ route('tags.index') }}">Tags</a>
-                    <a href="{{ route('orders.index') }}">Orders</a>
-                    <a href="{{ route('reviews.index') }}">Reviews</a>
-                </div>
+            </div>
+            <div class="navbar-light navbar-nav nav-link">
+                <a href="{{ route('users.index') }}">Users</a>
+                <a href="{{ route('products.index') }}">Products</a>
+                <a href="{{ route('tags.index') }}">Tags</a>
+                <a href="{{ route('orders.index') }}">Orders</a>
+                <a href="{{ route('reviews.index') }}">Reviews</a>
             </div>
         </div>
     </body>
-</html>
+@endsection
