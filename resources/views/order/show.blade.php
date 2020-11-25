@@ -34,7 +34,7 @@
                         @else
                             <ul class="list-group list-group-flush">
                                 @foreach ($order->products as $product)
-                                    <li class="list-group-item"> <a href="{{ route("products.show", $product->id) }}">{{ $product->name }}</a> </li>
+                                    <li class="list-group-item"> <a href="{{ route("products.show", $product->id) }}"><span class="float-left">{{ $product->name }}</span> <span class="float-right">{{ $product->pivot->quantity }}</span></a> </li>
                                 @endforeach
                             </ul>
                         @endif
