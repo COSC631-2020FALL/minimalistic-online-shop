@@ -8,6 +8,11 @@
                 <a href="{{ route('products.show', $product->id)}}">
                     <img class="rounded float-left" style="position: relative; width:100%;height:100%;" src='{{ $product->img_url }}' />
                 </a>
+
+                @foreach ($product->tags as $tag)
+                    <a href="{{ route('tags.show', $tag->id)}}" class="badge badge-secondary">{{ $tag->tag_name }}</a>
+                @endforeach
+
             </div>
 
 
