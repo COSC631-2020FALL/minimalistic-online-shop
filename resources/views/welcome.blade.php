@@ -14,13 +14,17 @@
                     @endforeach
                 </div>
             </div>
-            <div class="navbar-light navbar-nav nav-link">
-                <a href="{{ route('users.index') }}">Users</a>
-                <a href="{{ route('products.index') }}">Products</a>
-                <a href="{{ route('tags.index') }}">Tags</a>
-                <a href="{{ route('orders.index') }}">Orders</a>
-                <a href="{{ route('reviews.index') }}">Reviews</a>
-            </div>
+
+            @section('footer')
+                <div class="text-center">
+                    <a href="{{ route('users.index') }}">Users</a>
+                    <a href="{{ route('products.index') }}">Products</a>
+                    <a href="{{ route('tags.index') }}">Tags</a>
+                    <a href="{{ route('orders.index') }}">Orders</a>
+                    <a href="{{ route('reviews.index') }}">Reviews</a>
+                </div>
+            @endsection
+
         </div>
     </body>
 @endsection
