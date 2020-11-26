@@ -7,6 +7,18 @@
 
         @include('components.product')
 
+        <form action="">
+            <div class="col-md-12">
+                <div class="form-group row">
+                    <textarea id="pname" name="name" type="text" class="form-control" rows="6" required></textarea>
+                </div>
+                <div class="form-group row">
+                    <button class="btn btn-primary btn-block" type="submit">SUBMIT REVIEW</button>
+                </div>
+            </div>
+        </form>
+
+        <hr>
          <div class="card">
              <div class="card-header"> Product Reviews </div>
 
