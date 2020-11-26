@@ -32,15 +32,21 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-                        <div class="input-group">
-                            <input class="form-control" placeholder="Search" aria-label="With textarea"></input>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">@Include('icons.search')</span>
                         </div>
-                    </ul>
+                        <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                    </div>
+
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}">@include('icons.cart')</i></a>
+                        </li>
                         @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -81,6 +87,10 @@
         <main class="py-4">
             @yield('content')
         </main>
+
+        <footer>
+            @yield('footer')
+        </footer>
     </div>
 </body>
 </html>
