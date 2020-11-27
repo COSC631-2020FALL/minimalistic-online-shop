@@ -37,7 +37,9 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">@Include('icons.search')</span>
                         </div>
-                        <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                        <form>
+                            <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon1">
+                        </form>
                     </div>
 
 
