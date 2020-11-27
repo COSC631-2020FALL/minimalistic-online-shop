@@ -1,6 +1,7 @@
 <?php
 
 use App\Product;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,10 +20,15 @@ Route::get('/', function () {
     return view('welcome',['products' => $products]);
 });
 
+Route::get('/search',function(Request $request) {
+    $products = collect();//empty
+    if(strlen($request->search) != 0 )
+        $products = Product::where('name','like','%'. $request->search .'%')->get();
+    return view('product.search', ['products' => $products]);
+})->name('search');
+
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
-
 Route::resource('users', 'UserController');
 Route::resource('products', 'ProductController');
 Route::resource('tags', 'TagController');
