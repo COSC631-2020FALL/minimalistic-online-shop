@@ -12,6 +12,7 @@ $factory->define(ProductOrders::class, function (Faker $faker) {
     return [
         'product_id' => Product::all()->random()->id,
         'order_id' => Order::all()->random()->id,
-        'quantity' => rand($min = 1, $max = 50)
+        'quantity' => rand($min = 1, $max = 50),
+        'price' => rand($min = 1, $max = 150)
     ];
 });

@@ -18,7 +18,12 @@ class ProductModelTest extends TestCase
         $product = factory(Product::class)->create();
         $orders = factory(Order::class, 3)->create();
 
-        $product->orders()->attach($orders, ['quantity' => rand(1, $product->quantity)]);
+        $quant = rand(1, $product->quantity);
+
+        $product->orders()->attach($orders, 
+        ['quantity' => $quant,
+         'price' =>  $quant * $product->price
+        ]);
 
         $this->assertEquals(3,$product->orders->count());
     }
