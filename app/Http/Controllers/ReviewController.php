@@ -6,9 +6,14 @@ use App\Review;
 use App\Product;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ReviewController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth'])->only(['store']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -43,15 +48,14 @@ class ReviewController extends Controller
 
         $rules = [
             'product_id' => 'numeric|required', //might be bad
-            'reviewer_id' => 'numeric|required',//def bad, need to validate that it is logged user
             'rating'=>'numeric|gt:0|lt:6|required',
             'review'=>'string|max:255'
         ];
 
         $this->validate($request, $rules);
-        Review::create($request->all());
+        Review::create(array_merge($request->all(), ['reviewer_id' => Auth::user()->id]));
 
-        return redirect()->route('reviews.index');
+        return redirect()->back();
     }
 
     /**
