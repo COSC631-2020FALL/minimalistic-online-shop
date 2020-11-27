@@ -10,14 +10,22 @@ use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
+    public function __construct()
+    {
+        // $this->middleware(['auth'])->only(['index']);
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::all();
+        if ($request->has('inventory') && Auth::check()){
+            $products = Auth::user()->products;
+        } else {
+            $products = Product::all();
+        }
         return view('product.index', ['products' => $products]);
     }
 
@@ -45,7 +53,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $rules = [
             'name' => 'string|max:255',
             'description' => 'string|max:255',

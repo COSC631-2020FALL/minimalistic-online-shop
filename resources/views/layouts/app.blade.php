@@ -45,7 +45,7 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">@include('icons.cart')</i></a>
+                            <a class="nav-link" href="{{ route('login') }}">@include('icons.cart')</a>
                         </li>
                         @guest
                             <li class="nav-item">
@@ -72,6 +72,10 @@
                                     <a class="dropdown-item" href="{{ route('users.show', Auth::user()->id )}}">
                                         Profile
                                     </a>
+
+
+                                    <a class="dropdown-item" href="{{ route('products.index').'?inventory=true' }}">Inventory</a>
+
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
