@@ -9,8 +9,8 @@
                 <div class="card">
                     <div class="card-header">Checkout</div>
 
-                    <div class="card-body">
-
+                    <div class="card-body text-center">
+                        <button class="btn btn-outline-primary">CONFIRM CHECKOUT</button>
                     </div>
                 </div>
             </div>
