@@ -7,10 +7,14 @@
 
         @include('components.product')
 
-        <form action="">
+        <form action="{{ route('reviews.store') }}" method="POST">
+            @csrf
+
             <div class="col-md-12">
+                <input type="text" hidden name="product_id" value="{{ $product->id }}">
+                <input type="text" hidden name="rating" value="3">
                 <div class="form-group row">
-                    <textarea id="pname" name="name" type="text" class="form-control" rows="6" required></textarea>
+                    <textarea name="review" type="text" class="form-control" rows="6" required></textarea>
                 </div>
                 <div class="form-group row">
                     <button class="btn btn-primary btn-block" type="submit">SUBMIT REVIEW</button>
