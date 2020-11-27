@@ -19,8 +19,8 @@
                 <div class="card">
                     <div class="card-header">Owner</div>
 
-                    <div class="card-body">
-                        {{ $order->user }}
+                    <div class="card-body text-center">
+                        <button type="button" class="btn btn-secondary">{{ $order->user->email }}</button>
                     </div>
 
                 </div>
