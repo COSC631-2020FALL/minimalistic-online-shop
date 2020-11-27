@@ -11,23 +11,8 @@
                     </div>
 
                     <div class="card-body">
-                       <table>
-                            <thead>
-                                <tr>
 
-
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    {{-- {{ $orders }} --}}
-                                    @foreach ($orders as $order)
-                                        <a href="{{ route('orders.show', $order->id)}}"> Order-{{ $order->id}}</a>
-                                        <br>
-                                    @endforeach
-                                </tr>
-                            </tbody>
-                       </table>
+                        @each('components.order', $orders, 'order')
                     </div>
                 </div>
             </div>
