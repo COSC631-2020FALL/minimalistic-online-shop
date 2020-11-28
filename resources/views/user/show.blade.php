@@ -9,15 +9,12 @@
                 <div class="card">
                     <div class="card-header">User | {{$user->name}}</div>
 
-                    <div class="card-body">
+                    <div class="card-body text-center">
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-2">
-                                <a href="{{ route("users.edit", $user->id) }}">
-                                    <button class="btn btn-primary" type="submit">EDIT PROFILE</button>
-                                </a>
-                            </div>
-                        </div>
+                        <a href="{{ route("users.edit", $user->id) }}">
+                            <button class="btn btn-primary" type="submit">EDIT PROFILE</button>
+                        </a>
+
                     </div>
                 </div>
                 <hr>
