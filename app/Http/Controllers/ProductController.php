@@ -65,7 +65,7 @@ class ProductController extends Controller
         $this->validate($request, $rules);
         Product::create($request->all());
 
-        return redirect()->route('products.index');
+        return redirect()->route('products.index', ['inventory' => true]);
     }
 
     /**
@@ -113,7 +113,7 @@ class ProductController extends Controller
 
         $product->save();
 
-        return redirect()->route('products.index');
+        return redirect()->route('products.index', ['inventory' => true]);
     }
 
     /**
@@ -125,6 +125,7 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
-        return redirect()->route('products.index');
+
+        return redirect()->route('products.index', ['inventory' => true]);
     }
 }

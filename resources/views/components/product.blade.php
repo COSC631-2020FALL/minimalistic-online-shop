@@ -18,46 +18,45 @@
 
             <div class="col-md-6 float-right">
 
-                <form action="{{route('carts.store', $product->id)}}" method="post">
-                    @csrf
-                    <span class="row">{{ $product->name }}</span>
-                    <br>
-                    <span class="row">{{ $product->description }}</span>
-                    <br>
-                    <span class="row">$ {{ $product->price }}</span>
-                    <br>
-                    <span class="row">
-                        <input type="range" name="quantity" value="{{$product->quantity}}">
-                    </span>
-                    <br>
-                    <span class="row">
+                <span class="row">{{ $product->name }}</span>
+                <br>
+                <span class="row">{{ $product->description }}</span>
+                <br>
+                <span class="row">$ {{ $product->price }}</span>
+                <br>
+                <span class="row">
+                    <input type="range" name="quantity" value="{{$product->quantity}}">
+                </span>
+                <br>
+                <span class="row">
 
-                        <div class="btn-toolbar justify-content-between">
-
+                    <div class="btn-toolbar justify-content-between">
+                        <form action="{{route('carts.store', $product->id)}}" method="post">
+                            @csrf
                             <div class="btn-group mr-2">
                                 <button type="submit" class="btn btn-outline-primary">ADD TO CART</button>
                             </div>
+                        </form>
+                        @auth
+                            @isowner($product)
+                                <div class="btn-group mr-2">
+                                    <a href="{{ route('products.edit', $product->id) }}" class="btn btn-outline-primary">EDIT</a>
+                                </div>
+                                <div class="btn-group mr-2">
+                                    <form action="{{ route('products.destroy', $product->id) }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-outline-danger">DELETE</button>
+                                    </form>
+                                </div>
+                            @endisowner
+                        @endauth
 
-                            @auth
-                                @isowner($product)
-                                    <div class="btn-group mr-2">
-                                        <a href="{{ route('products.edit', $product->id) }}" class="btn btn-outline-primary">EDIT</a>
-                                    </div>
-                                    <div class="btn-group mr-2">
-                                        <form action="{{ route('products.destroy', $product->id) }}" method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-outline-danger">DELETE</button>
-                                        </form>
-                                    </div>
-                                @endisowner
-                            @endauth
 
+                    </div>
 
-                        </div>
+                </span>
 
-                    </span>
-                </form>
             </div>
         </div>
     </div>
