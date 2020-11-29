@@ -40,8 +40,15 @@
 
                             @auth
                                 @isowner($product)
-                                    <div class="btn-group">
+                                    <div class="btn-group mr-2">
                                         <a href="{{ route('products.edit', $product->id) }}" class="btn btn-outline-primary">EDIT</a>
+                                    </div>
+                                    <div class="btn-group mr-2">
+                                        <form action="{{ route('products.destroy', $product->id) }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-outline-danger">DELETE</button>
+                                        </form>
                                     </div>
                                 @endisowner
                             @endauth
