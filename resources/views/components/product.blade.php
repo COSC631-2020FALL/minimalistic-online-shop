@@ -24,19 +24,25 @@
                 <br>
                 <span class="row">$ {{ $product->price }}</span>
                 <br>
-                <span class="row">
-                    <input type="range" name="quantity" value="{{$product->quantity}}">
-                </span>
-                <br>
+                <form id="add-to-cart-form-{$product->id}" action="{{route('carts.store', $product->id)}}" method="post">
+                    @csrf
+                    <span class="row">
+                        <input type="range" name="quantity" value="{{$product->quantity}}">
+                    </span>
+                    <br>
+                </form>
                 <span class="row">
 
                     <div class="btn-toolbar justify-content-between">
-                        <form action="{{route('carts.store', $product->id)}}" method="post">
-                            @csrf
-                            <div class="btn-group mr-2">
-                                <button type="submit" class="btn btn-outline-primary">ADD TO CART</button>
-                            </div>
-                        </form>
+
+                        <div class="btn-group mr-2">
+                            <button class="btn btn-outline-primary"
+                                onclick="event.preventDefault();
+                                                document.getElementById('add-to-cart-form-{$product->id}').submit();">
+                                ADD TO CART
+                            </button>
+                        </div>
+
                         @auth
                             @isowner($product)
                                 <div class="btn-group mr-2">
