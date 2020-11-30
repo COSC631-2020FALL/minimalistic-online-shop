@@ -22,9 +22,13 @@
 
                     <div class="card-header">Order History</div>
 
-                    <div class="card-body">
+                    <div class="card-body text-center">
 
-                        @each('components.order', $user->orders, 'order')
+                        @if ($user->orders->count())
+                            @each('components.order', $user->orders, 'order')
+                        @else
+                            <span>You have not made any order yet.</span>
+                        @endif
 
                     </div>
 
