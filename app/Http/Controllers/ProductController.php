@@ -21,12 +21,14 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
+        $inventory = false;
         if ($request->has('inventory') && Auth::check()){
             $products = Auth::user()->products;
+            $inventory = true;
         } else {
             $products = Product::all();
         }
-        return view('product.index', ['products' => $products]);
+        return view('product.index', ['products' => $products, 'inventory' => $inventory]);
     }
 
     /**
