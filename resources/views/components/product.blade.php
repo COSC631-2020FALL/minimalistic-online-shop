@@ -27,7 +27,8 @@
                 <form id="add-to-cart-form-{$product->id}" action="{{route('carts.store', $product->id)}}" method="post">
                     @csrf
                     <span class="row">
-                        <input type="range" name="quantity" value="{{$product->quantity}}">
+                        {{--<input type="range" name="quantity" value="{{$product->quantity}}">--}}
+                        <input type="number" name="quantity" value="0" min="1" max="100"> 
                     </span>
                     <br>
                 </form>
