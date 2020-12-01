@@ -19,15 +19,14 @@
                                 <label for="name" class="col-md-4 col-form-label text-md-right">Tag Name</label>
 
                                 <div class="col-md-6">
-                                    <input id="name" type="name"
-                                    {{--  class="form-control @error('email') is-invalid @enderror"  --}}
-                                    name="tag_name" required value="{{ $tag->tag_name }}">
-
-                                    {{--  @error('email')
+                                    <input id="tag_name" type="name"
+                                        class="form-control @error('tag_name') is-invalid @enderror"
+                                        name="tag_name" required value="{{ $tag->tag_name }}">
+                                    @error('tag_name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
-                                    @enderror  --}}
+                                    @enderror
                                 </div>
                             </div>
                             <div class="form-group row mb-0">

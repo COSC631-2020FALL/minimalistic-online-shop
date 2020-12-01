@@ -38,7 +38,7 @@ class TagController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'tag_name'=>'required|string|max:255',
+            'tag_name'=>'required|string|max:25',
         ];
 
         $this->validate($request, $rules);
@@ -91,7 +91,7 @@ class TagController extends Controller
     public function update(Request $request, Tag $tag)
     {
         $rules = [
-            'tag_name'=>'required|string|max:255',
+            'tag_name'=>'required|string|max:25',
         ];
         $this->validate($request,$rules);
         $tag->update($request->all());

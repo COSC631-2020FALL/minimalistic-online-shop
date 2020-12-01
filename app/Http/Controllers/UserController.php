@@ -42,12 +42,14 @@ class UserController extends Controller
     {
         // validate
         $rules = [
-            'name' => 'required',
-            'email' => 'required',
-            'address_1' => 'required'
+            'name'      => 'required|string|max:255',
+            'email'     => 'required|unique:App\User,email|string|max:255',
+            'address_1' => 'required|string|max:255',
+            'address_2' => 'string|max:255'
         ];
 
         $this->validate($request, $rules);
+
 
         User::create(array_merge($request->all(), ['password' => bcrypt('secret')]));
 
@@ -95,9 +97,10 @@ class UserController extends Controller
         if ($this->is_logged_in_user($user)){
             // validate
             $rules = [
-                'name' => 'required',
-                'email' => 'required',
-                'address_1' => 'required'
+                'name'      => 'required|string|max:255',
+                'email'     => 'required|string|max:255',
+                'address_1' => 'required|string|max:255',
+                'address_2' => 'string|max:255'
             ];
 
             $this->validate($request, $rules);
