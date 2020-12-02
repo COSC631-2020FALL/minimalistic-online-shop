@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
     public function __construct(){
-        $this->middleware(['auth:web'])->only(['create', 'edit', 'show']);
+        $this->middleware(['auth:web'])->only(['create', 'store', 'edit', 'update', 'show']);
     }
     /**
      * Display a listing of the resource.
@@ -94,23 +94,37 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        if ($this->is_logged_in_user($user)){
-            // validate
+
+        // validate
+
+
+        if ($request->password) {
             $rules = [
                 'name'      => 'required|string|max:255',
                 'email'     => 'required|string|max:255',
                 'address_1' => 'required|string|max:255',
-                'address_2' => 'string|max:255'
+                'address_2' => 'string|max:255',
+                'password' =>  'min:6|confirmed'
             ];
-
-            $this->validate($request, $rules);
-
-            $user->update($request->all());
-
-            $user->save();
-
-            return redirect()->route('users.index');
+        } else {
+            $rules = [
+                'name'      => 'required|string|max:255',
+                'email'     => 'required|string|max:255',
+                'address_1' => 'required|string|max:255',
+                'address_2' => 'string|max:255',
+            ];
         }
+
+        $this->validate($request, $rules);
+
+        $user->update($request->except('password'));
+
+        $request->password ?
+            $user->update(['password' => bcrypt($request['password'])])
+        :
+            '';
+
+        $user->save();
 
         return redirect()->back();
     }
