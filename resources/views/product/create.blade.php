@@ -13,20 +13,13 @@
                     <div class="card-body">
                         <form action="{{ route('products.store') }}" method="POST">
                             @csrf
-                            @if($user==null)
-                                <label for="owner_id" class="col-md-4 col-form-label text-md-right">User :</label>
-                                <select id="owner_id" name="owner_id">
-                                    @foreach ($users as $user)
-                                        <option value="{{$user->id}}">{{$user->name}}</option>
-                                    @endforeach
-                                </select>
-                            @else
-                                <input name ="owner_id" type="hidden" value="{{$user->id}}"></input>
-                            @endif
+
+                            <input name ="owner_id" type="hidden" value="{{$user->id}}">
+
                             <div class="form-group row">
                                 <label for="pname" class="col-md-4 col-form-label text-md-right">Product Name</label>
                                 <div class="col-md-6">
-                                    <input id="pname" name="name" type="text" class="form-control @error('name') is-invalid @enderror" required>
+                                    <input value="{{ old('name') }}" name="name" type="text" class="form-control @error('name') is-invalid @enderror" required>
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -34,10 +27,12 @@
                                     @enderror
                                 </div>
                             </div>
+
+
                             <div class="form-group row">
                                 <label for="pdesc" class="col-md-4 col-form-label text-md-right">Product Description</label>
                                 <div class="col-md-6">
-                                    <textarea id="pdesc" name="description" class="form-control @error('description') is-invalid @enderror" required ></textarea>
+                                    <textarea name="description" class="form-control @error('description') is-invalid @enderror" required >{{ old('description') }}</textarea>
                                     @error('description')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -45,10 +40,11 @@
                                     @enderror
                                 </div>
                             </div>
+
                             <div class="form-group row">
                                 <label for="pimg" class="col-md-4 col-form-label text-md-right">Image URL</label>
                                 <div class="col-md-6">
-                                    <input id="pimg" name="img_url" type="text" class="form-control @error('img_url') is-invalid @enderror" required>
+                                    <input value="{{ old('img_url') }}" name="img_url" type="text" class="form-control @error('img_url') is-invalid @enderror" required>
                                     @error('img_url')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -56,10 +52,11 @@
                                     @enderror
                                 </div>
                             </div>
+
                             <div class="form-group row">
-                                <label for="pprice" class="col-md-4 col-form-label text-md-right">Price</label>
+                                <label for="price" class="col-md-4 col-form-label text-md-right">Price</label>
                                 <div class="col-md-6">
-                                    <input id="pprice" name="price" type="text" class="form-control @error('price') is-invalid @enderror" required>
+                                    <input value="{{ old('price') }}"  name="price" type="text" class="form-control @error('price') is-invalid @enderror" required>
                                     @error('price')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -67,9 +64,27 @@
                                     @enderror
                                 </div>
                             </div>
+
+
+                            <div class="form-group row">
+                                <label for="tags" class="col-md-4 col-form-label text-md-right">Product Tags </label>
+                                <div class="col-md-6">
+                                    <select name="tags[]" class="form-control @error('tags') is-invalid @enderror" multiple>
+                                        @foreach ($tags as $tag)
+                                            <option value="{{$tag->id}}">{{$tag->tag_name}}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('tags')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
                             <div class="form-group row mb-0">
                                 <div class="col-md-8 offset-md-4">
-                                    <button class="btn btn-primary" type="submit">UPDATE</button>
+                                    <button class="btn btn-primary" type="submit">CREATE</button>
                                 </div>
                             </div>
                         </form>

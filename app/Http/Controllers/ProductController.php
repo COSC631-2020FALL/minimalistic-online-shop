@@ -38,13 +38,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $user = Auth::user();
-        if( $user==null) {
-            $users = User::all();
-            return view('product.create',['user' => $user ,'users' => $users ]);
-        } else {
-            return view('product.create',['user' => $user ]);
-        }
+
+        return view('product.create',['user' => Auth::user(), 'tags' => Tag::all()]);
     }
 
     /**
@@ -60,12 +55,16 @@ class ProductController extends Controller
             'name' => 'string|max:255',
             'description' => 'string|max:255',
             'img_url'=>'required|active_url',
-            'price'=>'required|numeric|gt:0|numeric|lt:10000',
-            'owner_id'=>'required'
+            'price'=>'required|numeric|gt:0|numeric',
+            'owner_id'=>'required',
+            'tags' => 'required'
         ];
 
         $this->validate($request, $rules);
-        Product::create($request->all());
+
+        $product = Product::create($request->except('tags'));
+
+        $product->tags()->sync($request->tags);
 
         return redirect()->route('products.index', ['inventory' => true]);
     }
