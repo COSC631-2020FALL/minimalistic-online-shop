@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductRequest;
 use App\Product;
 use App\User;
 use App\Tag;
@@ -48,19 +49,8 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-
-        $rules = [
-            'name' => 'string|max:255',
-            'description' => 'string|max:255',
-            'img_url'=>'required|active_url',
-            'price'=>'required|numeric|gt:0|numeric',
-            'owner_id'=>'required',
-            'tags' => 'required'
-        ];
-
-        $this->validate($request, $rules);
 
         $product = Product::create($request->except('tags'));
 
@@ -89,8 +79,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        $tags = Tag::all();
-        return view('product.edit',['product' => $product, 'tags' => $tags]);
+        return view('product.edit',['user' => Auth::user(), 'product' => $product, 'tags' => Tag::all()]);
     }
 
     /**
@@ -100,17 +89,14 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(ProductRequest $request, Product $product)
     {
-        //return view('product.index');//redirect(route('products.index'));
-        $rules = [
-            'name'=>'required',
-            'description'=>'string|max:255',
-            'img_url'=>'required|active_url',
-            'price'=>'required|numeric|gt:0|numeric|lt:10000'
-        ];
-        $this->validate($request,$rules);
-        $product->update($request->all());
+
+        $product->update($request->except('tags'));
+
+        if ($request->tags){
+            $product->tags()->sync($request->tags);
+        }
 
         $product->save();
 

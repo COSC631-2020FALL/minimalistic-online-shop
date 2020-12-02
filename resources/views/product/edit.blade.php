@@ -12,6 +12,8 @@
                                 @csrf
                                 @method('PUT')
 
+                                <input name ="owner_id" type="hidden" value="{{$user->id}}">
+
                                 <div class="form-group row">
                                     <label for="pname" class="col-md-4 col-form-label text-md-right">Product Name</label>
 
@@ -59,12 +61,28 @@
                                     </div>
                                 </div>
 
+                                <div class="form-group row">
+                                    <label for="tags" class="col-md-4 col-form-label text-md-right">Product Tags </label>
+                                    <div class="col-md-6">
+                                        <select name="tags[]" class="form-control @error('tags') is-invalid @enderror" multiple>
+                                            @foreach ($tags as $tag)
+                                                <option value="{{$tag->id}}">{{$tag->tag_name}}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('tags')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
 
-                                <div class="form-group row mb-0">
+                                 <div class="form-group row mb-0">
                                     <div class="col-md-8 offset-md-4">
                                         <button class="btn btn-primary" type="submit">UPDATE</button>
                                     </div>
                                 </div>
+
                             </div>
                         </form>
                     </div>
