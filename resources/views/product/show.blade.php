@@ -14,10 +14,10 @@
                 <input type="text" hidden name="product_id" value="{{ $product->id }}">
                 <input type="text" hidden name="rating" value="3">
                 <div class="form-group row">
-                    <textarea name="review" type="text" 
-                        class="form-control @error('haspurchased') is-invalid @enderror" 
+                    <textarea name="review" type="text"
+                        class="form-control @error('haspurchased') is-invalid @enderror"
                         rows="6" required></textarea>
-                    
+
                     @error('haspurchased')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -39,7 +39,13 @@
                   @foreach ($reviews as $review)
                     <blockquote class="blockquote mb-0">
                         <p>{{ $review->review }}.</p>
-                        <footer class="blockquote-footer">Reviewed by <cite title="Source Title"> {{ $review->review_owner->name }} </cite></footer>
+                        <footer class="blockquote-footer">Reviewed by <cite title="Source Title"> {{ $review->review_owner->name }} </cite>
+                            <span class="ml-1">
+                                @for ($i = 0; $i < $review->rating; $i++)
+                                    <span> @include('icons.star') </span>
+                                @endfor
+                            </span>
+                        </footer>
                     </blockquote>
                     <hr>
                   @endforeach
