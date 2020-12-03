@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductRequest;
 use App\Product;
 use App\User;
 use App\Tag;
@@ -12,7 +13,7 @@ class ProductController extends Controller
 {
     public function __construct()
     {
-        // $this->middleware(['auth'])->only(['index']);
+        $this->middleware(['auth'])->only(['edit', 'store', 'update']);
     }
     /**
      * Display a listing of the resource.
@@ -21,12 +22,14 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
+        $inventory = false;
         if ($request->has('inventory') && Auth::check()){
             $products = Auth::user()->products;
+            $inventory = true;
         } else {
             $products = Product::all();
         }
-        return view('product.index', ['products' => $products]);
+        return view('product.index', ['products' => $products, 'inventory' => $inventory]);
     }
 
     /**
@@ -36,13 +39,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $user = Auth::user();
-        if( $user==null) {
-            $users = User::all();
-            return view('product.create',['user' => $user ,'users' => $users ]);
-        } else {
-            return view('product.create',['user' => $user ]);
-        }
+
+        return view('product.create',['user' => Auth::user(), 'tags' => Tag::all()]);
     }
 
     /**
@@ -51,19 +49,12 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
 
-        $rules = [
-            'name' => 'string|max:255',
-            'description' => 'string|max:255',
-            'img_url'=>'required|active_url',
-            'price'=>'required|numeric|gt:0|numeric|lt:10000',
-            'owner_id'=>'required'
-        ];
+        $product = Product::create($request->except('tags'));
 
-        $this->validate($request, $rules);
-        Product::create($request->all());
+        $product->tags()->sync($request->tags);
 
         return redirect()->route('products.index', ['inventory' => true]);
     }
@@ -88,8 +79,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        $tags = Tag::all();
-        return view('product.edit',['product' => $product, 'tags' => $tags]);
+        return view('product.edit',['user' => Auth::user(), 'product' => $product, 'tags' => Tag::all()]);
     }
 
     /**
@@ -99,17 +89,14 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(ProductRequest $request, Product $product)
     {
-        //return view('product.index');//redirect(route('products.index'));
-        $rules = [
-            'name'=>'required',
-            'description'=>'string|max:255',
-            'img_url'=>'required|active_url',
-            'price'=>'required|numeric|gt:0|numeric|lt:10000'
-        ];
-        $this->validate($request,$rules);
-        $product->update($request->all());
+
+        $product->update($request->except('tags'));
+
+        if ($request->tags){
+            $product->tags()->sync($request->tags);
+        }
 
         $product->save();
 

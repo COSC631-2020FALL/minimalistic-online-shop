@@ -24,14 +24,13 @@
 
                                 <div class="col-md-6">
                                     <input id="name" type="name"
-                                    {{--  class="form-control @error('email') is-invalid @enderror"  --}}
-                                    name="name" required value="{{ $user->name }}">
-
-                                    {{--  @error('email')
+                                        class="form-control @error('name') is-invalid @enderror"
+                                        name="name" required value="{{ $user->name }}">
+                                    @error('name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
-                                    @enderror  --}}
+                                    @enderror
                                 </div>
                             </div>
 
@@ -40,8 +39,13 @@
 
                                 <div class="col-md-6">
                                     <input id="email" type="email"
-
-                                    name="email" required value="{{ $user->email }}">
+                                        class="form-control @error('email') is-invalid @enderror"
+                                        name="email" required value="{{ $user->email }}">
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -50,7 +54,14 @@
                                 <label for="address_1" class="col-md-4 col-form-label text-md-right">Address 1</label>
 
                                 <div class="col-md-6">
-                                    <textarea id="address_1" name="address_1" required type="text">{{ $user->address_1 }}</textarea>
+                                    <textarea id="address_1" name="address_1" required
+                                        class="form-control @error('address_1') is-invalid @enderror"
+                                        type="text">{{ $user->address_1 }}</textarea>
+                                    @error('address_1')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -58,7 +69,36 @@
                                 <label for="address_2" class="col-md-4 col-form-label text-md-right">Address 2</label>
 
                                 <div class="col-md-6">
-                                    <textarea id="address_2" name="address_2" required type="text">{{ $user->address_2 }}</textarea>
+                                    <textarea id="address_2" name="address_2" required
+                                        class="form-control @error('address_2') is-invalid @enderror"
+                                        type="text">{{ $user->address_2 }}</textarea>
+                                    @error('address_2')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
+
+                                <div class="col-md-6">
+                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="current-password">
+
+                                    @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="password-confirm" class="col-md-4 col-form-label text-md-right"> Confirm Password </label>
+
+                                <div class="col-md-6">
+                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" autocomplete="new-password">
                                 </div>
                             </div>
 

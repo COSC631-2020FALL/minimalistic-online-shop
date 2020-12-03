@@ -7,7 +7,8 @@ use App\Product;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 class ReviewController extends Controller
 {
     public function __construct()
@@ -47,13 +48,29 @@ class ReviewController extends Controller
     {
 
         $rules = [
-            'product_id' => 'numeric|required', //might be bad
-            'rating'=>'numeric|gt:0|lt:6|required',
-            'review'=>'string|max:255'
+            'product_id'   => 'numeric|required', //might be bad
+            'rating'       => 'numeric|gt:0|lt:6|required',
+            'review'       => 'string|max:255',
+            'haspurchased' => 'required'
         ];
 
-        $this->validate($request, $rules);
-        Review::create(array_merge($request->all(), ['reviewer_id' => Auth::user()->id]));
+        $custommsg = [
+            'required'=>'You cannot leave a review for something you have not purhcased!'
+        ];
+        $request->request->remove('haspurchased');
+        
+        $user = Auth::user();
+        //has the user previously bought the item in question
+        foreach($user->orders as $order) {
+            if($order->products->contains($request['product_id'])){
+                //user has previously purchased the item
+                $request->request->add(['haspurchased'=>true]);
+            }
+        }
+        $validator = Validator::make($request->all(), $rules,$custommsg);
+        $validator->validate();
+
+        Review::create(array_merge($request->all(), ['reviewer_id' => $user->id]));
 
         return redirect()->back();
     }

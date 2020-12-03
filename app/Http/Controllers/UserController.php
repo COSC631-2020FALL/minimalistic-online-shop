@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
     public function __construct(){
-        $this->middleware(['auth:web'])->only(['create', 'edit', 'show']);
+        $this->middleware(['auth:web'])->only(['create', 'store', 'edit', 'update', 'show']);
     }
     /**
      * Display a listing of the resource.
@@ -42,12 +42,14 @@ class UserController extends Controller
     {
         // validate
         $rules = [
-            'name' => 'required',
-            'email' => 'required',
-            'address_1' => 'required'
+            'name'      => 'required|string|max:255',
+            'email'     => 'required|unique:App\User,email|string|max:255',
+            'address_1' => 'required|string|max:255',
+            'address_2' => 'string|max:255'
         ];
 
         $this->validate($request, $rules);
+
 
         User::create(array_merge($request->all(), ['password' => bcrypt('secret')]));
 
@@ -92,22 +94,37 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        if ($this->is_logged_in_user($user)){
-            // validate
+
+        // validate
+
+
+        if ($request->password) {
             $rules = [
-                'name' => 'required',
-                'email' => 'required',
-                'address_1' => 'required'
+                'name'      => 'required|string|max:255',
+                'email'     => 'required|string|max:255',
+                'address_1' => 'required|string|max:255',
+                'address_2' => 'string|max:255',
+                'password' =>  'min:6|confirmed'
             ];
-
-            $this->validate($request, $rules);
-
-            $user->update($request->all());
-
-            $user->save();
-
-            return redirect()->route('users.index');
+        } else {
+            $rules = [
+                'name'      => 'required|string|max:255',
+                'email'     => 'required|string|max:255',
+                'address_1' => 'required|string|max:255',
+                'address_2' => 'string|max:255',
+            ];
         }
+
+        $this->validate($request, $rules);
+
+        $user->update($request->except('password'));
+
+        $request->password ?
+            $user->update(['password' => bcrypt($request['password'])])
+        :
+            '';
+
+        $user->save();
 
         return redirect()->back();
     }

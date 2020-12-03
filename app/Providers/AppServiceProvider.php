@@ -28,5 +28,10 @@ class AppServiceProvider extends ServiceProvider
         Blade::if('isowner', function ($product) {
             return $product->owner->id === Auth::user()->id;
         });
+
+        Blade::if('isadmin', function () {
+            return Auth::user()->is_admin === true;
+        });
+
     }
 }
