@@ -35,7 +35,7 @@
                     <div class="btn-toolbar justify-content-between">
 
                         <div class="btn-group mr-2">
-                            <button class="btn {{ $product->quantity == 0? 'btn-outline-danger' : 'btn-outline-primary' }}"
+                            <button class="btn {{ $product->quantity <= 0? 'btn-outline-danger' : 'btn-outline-primary' }}"
                                 {{ $product->quantity == 0? 'disabled' : '' }}
                                 onclick="event.preventDefault();
                                                 document.getElementById('add-to-cart-form-{$product->id}').submit();">
