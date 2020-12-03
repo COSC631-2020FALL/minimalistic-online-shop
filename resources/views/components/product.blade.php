@@ -12,7 +12,6 @@
                 @foreach ($product->tags as $tag)
                     <a href="{{ route('tags.show', $tag->id)}}" class="badge badge-secondary">{{ $tag->tag_name }}</a>
                 @endforeach
-
             </div>
 
 
@@ -27,8 +26,7 @@
                 <form id="add-to-cart-form-{$product->id}" action="{{route('carts.store', $product->id)}}" method="post">
                     @csrf
                     <span class="row">
-                        {{--<input type="range" name="quantity" value="{{$product->quantity}}">--}}
-                        <input type="number" name="quantity" value="0" min="1" max="100"> 
+                        <input type="number" name="quantity" {{ $product->quantity == 0? 'disabled' : '' }} value="0" min="1" max="{{ $product->quantity }}">
                     </span>
                     <br>
                 </form>
@@ -37,10 +35,11 @@
                     <div class="btn-toolbar justify-content-between">
 
                         <div class="btn-group mr-2">
-                            <button class="btn btn-outline-primary"
+                            <button class="btn {{ $product->quantity == 0? 'btn-outline-danger' : 'btn-outline-primary' }}"
+                                {{ $product->quantity == 0? 'disabled' : '' }}
                                 onclick="event.preventDefault();
                                                 document.getElementById('add-to-cart-form-{$product->id}').submit();">
-                                ADD TO CART
+                                {{ $product->quantity == 0? 'OUT OF STOCK' : 'ADD TO CART' }}
                             </button>
                         </div>
 
@@ -58,12 +57,8 @@
                                 </div>
                             @endisowner
                         @endauth
-
-
                     </div>
-
                 </span>
-
             </div>
         </div>
     </div>
