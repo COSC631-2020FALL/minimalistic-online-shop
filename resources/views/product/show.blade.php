@@ -49,6 +49,10 @@
                     </blockquote>
                     <hr>
                   @endforeach
+
+                  @if ($reviews->count() == 0)
+                    <div class="center-text">Product has no reviews</div>
+                  @endif
              </div>
          </div>
       </div>
