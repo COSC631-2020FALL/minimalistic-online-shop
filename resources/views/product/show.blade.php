@@ -36,23 +36,8 @@
 
              <div class="card-body">
 
-                  @foreach ($reviews as $review)
-                    <blockquote class="blockquote mb-0">
-                        <p>{{ $review->review }}.</p>
-                        <footer class="blockquote-footer">Reviewed by <cite title="Source Title"> {{ $review->review_owner->name }} </cite>
-                            <span class="ml-1">
-                                @for ($i = 0; $i < $review->rating; $i++)
-                                    <span> @include('icons.star') </span>
-                                @endfor
-                            </span>
-                        </footer>
-                    </blockquote>
-                    <hr>
-                  @endforeach
+                  @each('components.review', $reviews, 'review', 'components.empty.review')
 
-                  @if ($reviews->count() == 0)
-                    <div class="center-text">Product has no reviews</div>
-                  @endif
              </div>
          </div>
       </div>
