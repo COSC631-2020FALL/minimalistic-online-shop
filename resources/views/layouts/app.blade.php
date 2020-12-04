@@ -87,6 +87,28 @@
                 </div>
             </div>
         </nav>
+		<center>	
+		<nav >
+			<!-- container -->
+			<div class="container">
+				<!-- responsive-nav -->
+				<div>
+					<!-- NAV -->
+					<br/>
+					<ul id="menu">
+						<li ><a href="{{route('products.index')}}">T-Shirt</a></li>
+						<li ><a href="{{route('products.index')}}">Spotify</a></li>
+						<li ><a href="{{route('products.index')}}">3D-Print</a></li>
+						<li ><a href="{{route('products.index')}}">Usedbook</a></li>
+					</ul>
+					<!-- /NAV -->
+				</div>
+				<!-- /responsive-nav -->
+			</div>
+			<!-- /container -->
+
+        </nav>
+		</center>
 
         <main class="py-4">
             @yield('content')

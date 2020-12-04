@@ -128,7 +128,46 @@ class UserController extends Controller
 
         return redirect()->back();
     }
+	
+    public function search(Request $r){
+        $category ;
+        $name ;
+        if($r->query("c")){
+            $category = $r->query("c");
+        }
+        if($r->query("n")){
+            $name = $r->query("n");
+        }
+        $res = Product::all();
+        $cat = Category::all();
 
+        if(isset($category) && isset($name)){
+            $name = strtolower($name);
+            $sRes = DB::select( DB::raw("SELECT * FROM `products` WHERE lower(name) like '%$name%' and category_id = $category" ) );
+        }
+        else if(isset($name)){
+            $name = strtolower($name);
+            $sRes = DB::select( DB::raw("SELECT * FROM `products` WHERE lower(name) like '%$name%'" ) );
+        }
+        else if(isset($category)){
+            $sRes = DB::table('products')
+            ->where("category_id" , $category)
+            ->get();
+        }
+        else{
+            $sRes = DB::table('products')
+            ->get();
+        }
+
+        if(!isset($category)) {
+            $category = -1;
+        }
+
+    	return view('store.search')
+            ->with('products', $sRes)
+            ->with("cat", $cat)
+            ->with("a", $category);
+    }
     /**
      * Remove the specified resource from storage.
      *
