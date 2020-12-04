@@ -27,12 +27,12 @@ Route::get('/search',function(Request $request) {
     return view('product.search', ['products' => $products]);
 })->name('search');
 
-Route::get('/search',function(Request $request) {
-    $products = collect();//empty
-    if(strlen($request->search) != 0 )
-        $products = Product::where('name','like','%'. $request->search .'%')->get();
-    return view('product.search', ['products' => $products]);
-})->name('search.cat');
+// Route::get('/search',function(Request $request) {
+//     $products = collect();//empty
+//     if(strlen($request->search) != 0 )
+//         $products = Product::where('name','like','%'. $request->search .'%')->get();
+//     return view('product.search', ['products' => $products]);
+// })->name('search.cat');
 
 
 Auth::routes();
