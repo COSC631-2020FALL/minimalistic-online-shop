@@ -6,7 +6,7 @@
     </span>
 
     <span class="form-group row">
-        Total Cost: $20
+        Total Cost: $ {{ $total?? 0 }}
     </span>
 
     <div class="form-group row">
