@@ -34,7 +34,27 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // \Cart::clear();
+        $rules = [
+            'item' => 'required|numeric',
+            'quantity' => 'required|numeric|min:1'
+        ];
+
+        $this->validate($request, $rules);
+
+        $product = Product::find($request->item);
+        $item = [
+            'id' => $product->id,
+            'name' => $product->name,
+            'quantity' => $request->quantity,
+            'price' => $product->price,
+            'associatedModel' => $product
+        ];
+
+
+        \Cart::add($item);
+
+        return redirect()->back();
     }
 
     /**
@@ -66,9 +86,23 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Product $product)
     {
-        //
+        $rules = [
+            'quantity' => 'required'
+        ];
+
+        $this->validate($request, $rules);
+
+        $product = Product::find($request->item);
+
+        \Cart::update($product->id, ['quantity' => [
+            'relative' => false,
+            'value' => $request->quantity,
+            ]
+        ]);
+
+        return redirect()->back();
     }
 
     /**
