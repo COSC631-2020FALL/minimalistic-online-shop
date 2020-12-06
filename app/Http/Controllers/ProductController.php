@@ -52,8 +52,8 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
 
-        $product = Product::create($request->except('tags'));
-
+        $product = Product::create(array_merge($request->except('tags'), ['cat_id' => 1]));
+        $request->uploadImage($product)->storeImageUrlName();
         $product->tags()->sync($request->tags);
 
         return redirect()->route('products.index', ['inventory' => true]);

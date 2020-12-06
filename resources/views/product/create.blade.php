@@ -11,7 +11,7 @@
                     <div class="card-header">Create Product</div>
 
                     <div class="card-body">
-                        <form action="{{ route('products.store') }}" method="POST">
+                        <form action="{{ route('products.store') }}" method="POST"  enctype="multipart/form-data">
                             @csrf
 
                             <input name ="owner_id" type="hidden" value="{{$user->id}}">
@@ -44,7 +44,7 @@
                             <div class="form-group row">
                                 <label for="pimg" class="col-md-4 col-form-label text-md-right">Image URL</label>
                                 <div class="col-md-6">
-                                    <input value="{{ old('img_url') }}" name="img_url" type="text" class="form-control @error('img_url') is-invalid @enderror" required>
+                                    <input value="{{ old('img_url') }}" name="img_url" type="file" class="form-control @error('img_url') is-invalid @enderror" required>
                                     @error('img_url')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -85,8 +85,8 @@
                             <div class="form-group row">
                                     <label for="quantity" class="col-md-4 col-form-label text-md-right">Quantity In Stock</label>
                                     <div class="col-md-6">
-                                        <input id="quantity" name="quantity" 
-                                               type="text" class="form-control @error('quantity') is-invalid @enderror"  
+                                        <input id="quantity" name="quantity"
+                                               type="text" class="form-control @error('quantity') is-invalid @enderror"
                                                value="{{ old('quantity')}}" required>
                                         @error('quantity')
                                             <span class="invalid-feedback" role="alert">
