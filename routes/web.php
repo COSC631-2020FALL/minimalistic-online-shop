@@ -38,3 +38,9 @@ Route::resource('carts', 'CartController');
 Route::get('cart-checkout', function(){
     return view('checkout');
 })->name('checkout');
+
+Route::get('/clear-cart', function () {
+    \Cart::clear();
+
+    return redirect()->back();
+})->name('clear-cart');

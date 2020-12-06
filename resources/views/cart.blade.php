@@ -6,6 +6,12 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
+                <div class="col-md-12">
+                    <div class="row">
+                        <a class="btn btn-danger" href="{{ route('clear-cart') }}">CLEAR CART</a>
+                    </div>
+                </div>
+                <br>
                 <div class="card">
                     <div class="card-header">Your Cart</div>
 
