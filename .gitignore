@@ -13,3 +13,7 @@ yarn-error.log
 settings.json
 down_images
 up_images
+start_env.txt
+stop_env.txt
+refresh_env.txt
+enter_docker_container
