@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Product;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -34,7 +35,7 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        // \Cart::clear();
+
         $rules = [
             'item' => 'required|numeric',
             'quantity' => 'required|numeric|min:1'
@@ -53,7 +54,7 @@ class CartController extends Controller
 
 
         \Cart::add($item);
-
+        $request->session()->flash('status', "Item {$product->name} was added to cart successfully!");
         return redirect()->back();
     }
 
@@ -111,8 +112,11 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request,$id)
     {
-        //
+
+        \Cart::remove($id);
+        $request->session()->flash('status', "Item successfully removed from cart");
+        return redirect()->back();
     }
 }

@@ -27,7 +27,7 @@
                     @csrf
                     <input name="item" type="text" value="{{ $product->id }}" hidden>
                     <span class="row">
-                        <input type="number" name="quantity" {{ $product->quantity == 0? 'disabled' : '' }} value="0" min="1" max="{{ $product->quantity }}">
+                        <input type="number" name="quantity" {{ $product->quantity == 0? 'disabled' : '' }} value="1" min="1" max="{{ $product->quantity }}">
                     </span>
                     <br>
                 </form>

@@ -11,7 +11,7 @@
         <span class="form-group row">Cost: $ {{ $product['quantity'] * $product['price'] }}</span>
 
         <span class="form-group row">
-            <form action="{{ route('carts.destroy', $product->associatedModel->id )}}" method="post">
+            <form action="{{ route('carts.destroy', $product['id'] )}}" method="post">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-danger">
