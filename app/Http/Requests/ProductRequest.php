@@ -29,6 +29,7 @@ class ProductRequest extends FormRequest
             'img_url' => 'required|active_url',
             'price' => 'required|numeric|gt:0|numeric',
             'owner_id' => 'required',
+            'quantity' => 'required|numeric'
         ];
     }
 }
