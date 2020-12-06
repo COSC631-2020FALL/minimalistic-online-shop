@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
@@ -15,7 +15,7 @@ class CategoryController extends Controller
     public function index()
     {
         $result = Category::all();
-    	return view('category.index', ['categories', $result);       
+    	return view('category.index', ['categories', $result]);       
     }
 	
     public function create()
@@ -30,7 +30,7 @@ class CategoryController extends Controller
     
     public function edit(Category $category)
     {
-        return view('categories.edit', ['category', $category);
+        return view('categories.edit', ['category', $category]);
     }
 
     public function update(Request $request, Category $category)
