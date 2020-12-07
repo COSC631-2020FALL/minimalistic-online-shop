@@ -12,8 +12,8 @@ class UserSeeder extends Seeder
     public function run()
     {
         factory(App\User::class, 5)->create();
-        factory(App\User::class)->create(['name' => 'Tangeni', 'email' => 'tangeni@gmail.com', 'password' => bcrypt('secret')]);
-        factory(App\User::class)->create(['name' => 'Greg', 'email' => 'greg@gmail.com', 'password' => bcrypt('secret')]);
-        factory(App\User::class)->create(['name' => 'Li', 'email' => 'li@gmail.com', 'password' => bcrypt('secret')]);
+        factory(App\User::class)->create(['is_admin' => true, 'name' => 'Tangeni', 'email' => 'tangeni@gmail.com', 'password' => bcrypt('secret')]);
+        factory(App\User::class)->create(['is_admin' => true, 'name' => 'Greg', 'email' => 'greg@gmail.com', 'password' => bcrypt('secret')]);
+        factory(App\User::class)->create(['is_admin' => true, 'name' => 'Li', 'email' => 'li@gmail.com', 'password' => bcrypt('secret')]);
     }
 }
