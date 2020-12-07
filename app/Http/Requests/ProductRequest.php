@@ -38,9 +38,9 @@ class ProductRequest extends FormRequest
     public function uploadImage(Product $product){
         $uploadedFile = $this->img_url;
         $this->product = $product;
-        
+
         // get file name
-        $this->fileName =  $this->product->name;
+        $this->fileName =  $this->product->name.'_'.$product->id;
 
         // upload file
         $uploadedFile->storePubliclyAs(
