@@ -11,7 +11,7 @@ $factory->define(Product::class, function (Faker $faker) {
 
     return [
         'name' => $faker->name,
-        'description' => $faker->realText(255),
+        'description' => $faker->realText(120),
         'img_url' => $faker->imageUrl(),
         'price' => $faker->randomFloat($nbMaxDecimals = 2, $min = 0, $max = 20),
         'owner_id' => $owner_id,

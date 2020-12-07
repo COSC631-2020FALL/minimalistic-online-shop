@@ -1,5 +1,6 @@
 <?php
 
+use App\Category;
 use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -16,8 +17,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $products = Product::inRandomOrder()->limit(2)->get();
-    return view('welcome',['products' => $products]);
+    // $products = Product::inRandomOrder()->limit(2)->get();
+    return view('welcome',['categories' => Category::all()]);
 });
 
 Route::get('/search',function(Request $request) {
