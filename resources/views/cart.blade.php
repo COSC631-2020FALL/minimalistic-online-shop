@@ -5,13 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="col-md-12">
-                    @if (session('status'))
-                        <div class="row text-center">
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
-                        </div>
-                    @endif
+                    @include('components.alert')
 
                     <div class="row">
                         <a class="btn btn-danger" href="{{ route('clear-cart') }}">CLEAR CART</a>
