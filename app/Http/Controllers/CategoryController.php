@@ -12,44 +12,65 @@ use App\Product;
 
 class CategoryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['isadmin'])->only(['index', 'create', 'update', 'edit', 'destroy']);
+    }
     public function index()
     {
-        $result = Category::all();
-    	return view('category.index', ['categories', $result]);       
+    	return view('category.index', ['categories', Category::all()]);
     }
-	
+
     public function create()
     {
         return view('category.create');
     }
-    
+
     public function show(Category $category)
     {
         return view('category.show',['category' => $category]);
     }
-    
+
     public function edit(Category $category)
     {
         return view('categories.edit', ['category', $category]);
     }
 
+    public function store(Request $request)
+    {
+
+        $rules = [
+            'name' => 'required|string|max:255',
+        ];
+
+        $this->validate($request, $rules);
+
+        Category::create($request->all());
+
+        // TODO: Flush session
+        return redirect()->route('categories.index');
+    }
+
     public function update(Request $request, Category $category)
     {
-      
+
         $rules = [
             'name'=>'required|string|max:255',
         ];
+
         $this->validate($request, $rules);
         $category->update($request->all());
-		
+
         $category->save();
-        
+        // TODO: Flush session
         return redirect()->route('categories.index');
     }
 
     public function destroy(Category $category)
-    {   
-		$category->delete();
+    {
+
+        $category->delete();
+        // TODO: Flush session
 		return redirect()->route('categories.index');
     }
 }
