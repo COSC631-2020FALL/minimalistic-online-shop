@@ -19,20 +19,19 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
+	<style>
+		ul#menu li {
+		  display:inline;
+		  padding: 10px;
+		}
 
-    <title>
-	ul#menu li {
-    display:inline;
-    padding: 10px;
-  }
-	</title>
-
+	</style>
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'E-Store') }}
+                    {{ config('app.name', 'Shoppers') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -84,9 +83,6 @@
 
                                     <a class="dropdown-item" href="{{ route('products.index').'?inventory=true' }}">Inventory</a>
 
-                                    @isadmin
-                                        <a class="dropdown-item" href="{{ '#' }}">Admin</a>
-                                    @endisadmin
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
@@ -96,9 +92,20 @@
                         @endguest
                     </ul>
                 </div>
-            </div>
-        </nav>
-
+            </div>		
+		</nav>	
+        <nav>
+            <div class="container">
+				<div class="text-center">
+				</br>
+					<ul id="menu">
+                    	@foreach($categories as $category)
+							<li ><a href="{{route('search', ['search'=>$category->id])}}">{{$category->name}}</a></li>
+						@endforeach	
+					</ul>
+				</div>
+			</div>
+		</nav>				
         <main class="py-4">
             @yield('content')
         </main>
