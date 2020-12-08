@@ -8,7 +8,8 @@
     <div class="col-md-8">
 
         @include('components.product')
-
+        
+        @isnotadmin
         <form action="{{ route('reviews.store') }}" method="POST">
             @csrf
 
@@ -31,7 +32,7 @@
                 </div>
             </div>
         </form>
-
+        @endisnotadmin
         <hr>
          <div class="card">
              <div class="card-header"> Product Reviews </div>
