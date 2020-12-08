@@ -17,7 +17,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    // $products = Product::inRandomOrder()->limit(2)->get();
     return view('welcome',['categories' => Category::all()]);
 });
 
@@ -42,8 +41,4 @@ Route::get('clear-cart', 'CartController@clear')->name('clear-cart');
 
 Route::resource('categories', 'CategoriesController');
 
-Route::get('/clear-cart', function () {
-    \Cart::clear();
 
-    return redirect()->back();
-})->name('clear-cart');
