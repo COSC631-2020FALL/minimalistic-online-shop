@@ -31,18 +31,11 @@ Route::get('/search',function(Request $request) {
 
 Route::get('/search',function(Request $request) {
     $products = collect();//empty
+	$categories = Category::all();
     if(strlen($request->search) != 0 )
         $products = Product::where('category_id','like','%'. (int)$request->search .'%')->get();
-    return view('product.search', ['products' => $products]);
+    return view('product.search', ['products' => $products, 'categories' => $categories]);
 })->name('search');
-
-Route::get('/search',function(Request $request) {
-    $products = collect();//empty
-    if(strlen($request->search) != 0 )
-        $products = Product::where('category_id','like','%'. (int)$request->search .'%')->get();
-    return view('product.search', ['products' => $products]);
-})->name('search');
-//
 
 //Route::get('/welcome', 'CategoryController@index')->name('category.index');
 //Route::get('/search{category_id}', 'CategoryController@categoriesCheck')->name('category.show');
