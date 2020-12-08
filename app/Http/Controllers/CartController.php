@@ -119,4 +119,15 @@ class CartController extends Controller
         $request->session()->flash('status', "Item successfully removed from cart");
         return redirect()->back();
     }
+
+    public function clear(){
+        \Cart::clear();
+
+        return redirect()->back();
+    }
+
+    public function checkout(){
+
+        return view('checkout');
+    }
 }

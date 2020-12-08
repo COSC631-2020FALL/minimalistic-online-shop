@@ -36,9 +36,11 @@ Route::resource('tags', 'TagController');
 Route::resource('orders', 'OrderController')->only(['index', 'show']);
 Route::resource('reviews', 'ReviewController');
 Route::resource('carts', 'CartController');
-Route::get('cart-checkout', function(){
-    return view('checkout');
-})->name('checkout');
+
+Route::get('cart-checkout', 'CartController@checkout')->name('checkout');
+Route::get('clear-cart', 'CartController@clear')->name('clear-cart');
+
+Route::resource('categories', 'CategoriesController');
 
 Route::get('/clear-cart', function () {
     \Cart::clear();
