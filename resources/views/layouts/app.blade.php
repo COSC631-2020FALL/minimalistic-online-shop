@@ -78,7 +78,7 @@
                                     <a class="dropdown-item" href="{{ route('products.index').'?inventory=true' }}">Inventory</a>
 
                                     @isadmin
-                                        <a class="dropdown-item" href="{{ '#' }}">Admin</a>
+                                        <a class="dropdown-item" href="{{ route('admin') }}">Admin</a>
                                     @endisadmin
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

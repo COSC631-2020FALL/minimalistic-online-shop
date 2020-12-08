@@ -5,6 +5,7 @@
 
     <div class="container">
         <div class="row justify-content-center">
+            @include('components.left-nav')
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
@@ -20,7 +21,7 @@
 
                             @foreach ($tags as $tag)
                             <tr>
-                                <p hidden>{{$tag->id}}<p> 
+                                <p hidden>{{$tag->id}}<p>
                                 <td> <a href="{{ route('tags.show', $tag->id )}}"> {{ $tag->tag_name}}  </a></td>
                                 <td>
                                     <form action="{{ route('tags.destroy', $tag->id) }}" method="post">

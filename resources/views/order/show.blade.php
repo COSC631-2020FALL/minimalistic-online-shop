@@ -5,6 +5,7 @@
 
    <div class="container">
         <div class="row justify-content-center">
+            @include('components.left-nav')
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">Order #{{$order->id}}</div>
@@ -34,12 +35,12 @@
                         @else
                             <ul class="list-group list-group-flush">
                                 @foreach ($order->products as $product)
-                                    <li class="list-group-item"> 
+                                    <li class="list-group-item">
                                         <a href="{{ route("products.show", $product->id) }}">
                                             <span class="float-left">{{ $product->name }}</span>
-                                            <span class="float-center">{{ $product->pivot->price }}</span> 
+                                            <span class="float-center">{{ $product->pivot->price }}</span>
                                             <span class="float-right">{{ $product->pivot->quantity }}</span>
-                                        </a> 
+                                        </a>
                                     </li>
                                 @endforeach
                             </ul>

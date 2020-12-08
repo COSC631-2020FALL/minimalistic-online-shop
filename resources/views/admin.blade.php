@@ -2,21 +2,21 @@
 
 @section('content')
 
+
     <div class="container">
         <div class="row justify-content-center">
             @include('components.left-nav')
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">
-                        <span>Orders</span>
-                    </div>
+                    <div class="card-header">Checkout</div>
 
-                    <div class="card-body">
-                        @each('components.order', $orders, 'order')
+                    <div class="card-body text-center">
+                        <button class="btn btn-outline-primary">CONFIRM CHECKOUT</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 
 @endsection

@@ -5,6 +5,7 @@
 
     <div class="container">
         <div class="row justify-content-center">
+            @include('components.left-nav')
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">User | {{$user->name}}</div>

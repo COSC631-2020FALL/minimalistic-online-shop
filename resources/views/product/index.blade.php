@@ -4,17 +4,19 @@
 
     <div class="container">
         <div class="row justify-content-center">
+            @include('components.left-nav')
             <div class="col-md-8">
-                <div class="col-md-8">
-                    <div class="row text-center">
-                        @if (session('status'))
+
+                @if (session('status'))
+                    <div class="col-md-8">
+                        <div class="row text-center">
                             <div class="alert alert-success" role="alert">
                                 {{ session('status') }}
                             </div>
-                        @endif
+                        </div>
                     </div>
-                </div>
-                {{-- <hr> --}}
+                @endif
+
                 <br>
                 @if ($inventory == true)
                     <div>

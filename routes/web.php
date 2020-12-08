@@ -41,4 +41,6 @@ Route::get('clear-cart', 'CartController@clear')->name('clear-cart');
 
 Route::resource('categories', 'CategoriesController');
 
+Route::get('/admin', 'AdminController@admin')->name('admin');
+
 
