@@ -39,7 +39,7 @@ Route::resource('carts', 'CartController');
 Route::get('cart-checkout', 'CartController@checkout')->name('checkout');
 Route::get('clear-cart', 'CartController@clear')->name('clear-cart');
 
-Route::resource('categories', 'CategoriesController');
+Route::resource('categories', 'CategoryController');
 
 Route::get('/admin', 'AdminController@admin')->name('admin');
 
