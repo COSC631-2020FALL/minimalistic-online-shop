@@ -19,6 +19,8 @@
 
                 <span class="row">{{ $product->name }}</span>
                 <br>
+                <span class="row">{{ $product->category->name}}</span>
+                <br>
                 <span class="row">{{ $product->description }}</span>
                 <br>
                 <span class="row">$ {{ $product->price }}</span>

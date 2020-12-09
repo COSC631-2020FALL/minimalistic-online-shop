@@ -6,6 +6,7 @@ use App\Http\Requests\ProductRequest;
 use App\Product;
 use App\User;
 use App\Tag;
+use App\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -40,7 +41,7 @@ class ProductController extends Controller
     public function create()
     {
 
-        return view('product.create',['user' => Auth::user(), 'tags' => Tag::all()]);
+        return view('product.create',['user' => Auth::user(), 'tags' => Tag::all(),'categories' => Category::all()]);
     }
 
     /**
@@ -52,7 +53,7 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
 
-        $product = Product::create(array_merge($request->except('tags'), ['cat_id' => 1]));
+        $product = Product::create(array_merge($request->except('tags')));
         $request->uploadImage($product)->storeImageUrlName();
         $product->tags()->sync($request->tags);
 
@@ -80,7 +81,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('product.edit',['user' => Auth::user(), 'product' => $product, 'tags' => Tag::all()]);
+        return view('product.edit',['user' => Auth::user(), 'product' => $product, 'tags' => Tag::all(),'categories' => Category::all()]);
     }
 
     /**
