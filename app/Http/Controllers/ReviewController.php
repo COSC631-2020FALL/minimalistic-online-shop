@@ -71,7 +71,7 @@ class ReviewController extends Controller
         $validator->validate();
 
         Review::create(array_merge($request->all(), ['reviewer_id' => $user->id]));
-
+        $request->session()->flash('status', "Review created!");
         return redirect()->back();
     }
 
@@ -115,7 +115,7 @@ class ReviewController extends Controller
         $this->validate($request,$rules);
         $review->update($request->all());
         $review->save();
-
+        $request->session()->flash('status', "Review updated");
         return redirect()->route('reviews.index');
     }
 
@@ -128,6 +128,7 @@ class ReviewController extends Controller
     public function destroy(Review $review)
     {
         $review->delete();
+        $request->session()->flash('status', "Review deleted");
         return redirect()->route('reviews.index');
     }
 }

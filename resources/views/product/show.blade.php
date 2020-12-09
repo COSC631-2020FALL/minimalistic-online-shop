@@ -6,7 +6,7 @@
        @include('components.left-nav')
 
     <div class="col-md-8">
-
+        @include('components.alert')
         @include('components.product')
         
         @isnotadmin
