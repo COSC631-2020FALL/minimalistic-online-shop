@@ -11,7 +11,7 @@
                     <div class="card-header">Tag | {{$tag->tag_name}}</div>
                     <div class="card-body text-center">
                         <a href="{{ route("tags.edit", $tag->id) }}">
-                            <button class="btn btn-primary" type="submit">EDIT TAG</button>
+                            <button @isnotadmin {{ 'disabled' }} @endisnotadmin class="btn btn-primary" type="submit">EDIT TAG</button>
                         </a>
                     </div>
                 </div>
