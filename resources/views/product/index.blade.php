@@ -7,26 +7,16 @@
             @include('components.left-nav')
             <div class="col-md-8">
 
-                @if (session('status'))
-                    <div class="col-md-8">
-                        <div class="row text-center">
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
-                        </div>
-                    </div>
-                @endif
+                @include('components.alert')
 
-                <br>
                 @if ($inventory == true)
                     <div>
                         <a href="{{ route("products.create") }}">
                             <button class="btn btn-primary" type="submit">ADD PRODUCTS</button>
                         </a>
                     </div>
+                    <br>
                 @endif
-
-                <br>
 
                 @each('components.product', $products, 'product')
 
