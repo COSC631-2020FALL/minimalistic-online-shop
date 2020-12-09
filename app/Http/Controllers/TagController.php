@@ -43,7 +43,7 @@ class TagController extends Controller
 
         $this->validate($request, $rules);
         Tag::create($request->all());
-        
+        $request->session()->flash('status', "Tag {$request->tag_name} created!");
         return redirect()->route('tags.index');
     }
 
@@ -97,7 +97,7 @@ class TagController extends Controller
         $tag->update($request->all());
 
         $tag->save();
-
+        $request->session()->flash('status', "Tag {$tag->tag_name} updated!");
         return redirect()->route('tags.index');
     }
 
@@ -107,9 +107,10 @@ class TagController extends Controller
      * @param  \App\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tag $tag)
+    public function destroy(Request $request, Tag $tag)
     {
         $tag->delete();
+        $request->session()->flash('status', "Tag {$tag->tag_name} deleted!");
         return redirect()->route('tags.index');
     }
 }

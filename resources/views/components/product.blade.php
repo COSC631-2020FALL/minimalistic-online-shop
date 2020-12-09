@@ -6,7 +6,7 @@
 
             <div class="col-md-6 float-left">
                 <a href="{{ route('products.show', $product->id)}}">
-                    <img class="rounded float-left" style="position: relative; width:100%;height:100%;" src='{{ $product->img_url }}' />
+                    <img class="rounded float-left" style="position: relative; width:100%;height:100%;" src='{{ $product->img_url ."_". $product->id }}' />
                 </a>
 
                 @foreach ($product->tags as $tag)

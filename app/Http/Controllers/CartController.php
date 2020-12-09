@@ -120,9 +120,9 @@ class CartController extends Controller
         return redirect()->back();
     }
 
-    public function clear(){
+    public function clear(Request $request){
         \Cart::clear();
-
+        $request->session()->flash('status', "Cart cleared");
         return redirect()->back();
     }
 
