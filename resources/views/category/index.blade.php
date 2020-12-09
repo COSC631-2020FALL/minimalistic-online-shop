@@ -18,7 +18,9 @@
                             <li class="list-group-item">
                                <div class="row">
                                     <div class="col-md-9">
-                                        <span class="float-left">{{ $category->name }}</span>
+                                         <span class="float-left">
+                                            <a href="{{ route('categories.show', $category->id) }}">{{ $category->name }}</a>
+                                        </span>
                                     </div>
 
 
