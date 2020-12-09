@@ -43,4 +43,5 @@ Route::resource('categories', 'CategoryController');
 
 Route::get('/admin', 'AdminController@admin')->name('admin');
 
+Route::get('order-success', 'CartController@order_success')->name('order-successfull');
 
