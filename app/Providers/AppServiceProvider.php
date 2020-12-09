@@ -31,11 +31,13 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Blade::if('isadmin', function () {
-            return Auth::user()->is_admin === 1;
+            return Auth::check() && Auth::user()->is_admin === 1;
         });
+
         Blade::if('isnotadmin', function () {
-            return Auth::user()->is_admin === 0;
+            return Auth::check() && Auth::user()->is_admin === 0;
         });
+
 		Schema::defaultStringLength(191);
 
     }
