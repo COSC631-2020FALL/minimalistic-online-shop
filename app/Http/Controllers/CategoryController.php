@@ -6,8 +6,6 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
 use App\Category;
-use App\Product;
-
 
 
 class CategoryController extends Controller
@@ -16,9 +14,10 @@ class CategoryController extends Controller
     {
         $this->middleware(['isadmin'])->only(['index', 'create', 'update', 'edit', 'destroy']);
     }
+
     public function index()
     {
-    	return view('category.index', ['categories', Category::all()]);
+    	return view('category.index', ['categories' => Category::all()]);
     }
 
     public function create()
@@ -33,7 +32,7 @@ class CategoryController extends Controller
 
     public function edit(Category $category)
     {
-        return view('categories.edit', ['category', $category]);
+        return view('category.edit', ['category', $category]);
     }
 
     public function store(Request $request)
