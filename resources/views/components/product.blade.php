@@ -23,7 +23,7 @@
                 <br>
                 <span class="row">$ {{ $product->price }}</span>
                 <br>
-                <form id="add-to-cart-form-{$product->id}" action="{{route('carts.store')}}" method="post">
+                <form id="add-to-cart-form-{{ $product->id }}" action="{{route('carts.store')}}" method="post">
                     @csrf
                     <input name="item" type="text" value="{{ $product->id }}" hidden>
                     <span class="row">
@@ -39,7 +39,7 @@
                             <button class="btn {{ $product->quantity <= 0? 'btn-outline-danger' : 'btn-outline-primary' }}"
                                 {{ $product->quantity == 0? 'disabled' : '' }}
                                 onclick="event.preventDefault();
-                                                document.getElementById('add-to-cart-form-{$product->id}').submit();">
+                                                document.getElementById('add-to-cart-form-{{ $product->id }}').submit();">
                                 {{ $product->quantity == 0? 'OUT OF STOCK' : 'ADD TO CART' }}
                             </button>
                         </div>
