@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class TagController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['admin'])->only(['destroy', 'edit', 'update']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +19,7 @@ class TagController extends Controller
     public function index()
     {
         $tags = Tag::all();
-        
+
         return view('tag.index', ['tags' => $tags]);
     }
 
@@ -59,16 +63,6 @@ class TagController extends Controller
         return view('tag.show',['tag' => $tag]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Tag  $tag
-     * @return \Illuminate\Http\Response
-     */
-    public function showProductsWithTag(Tag $tag) {
-
-        //return view(products)
-    }
 
     /**
      * Show the form for editing the specified resource.
