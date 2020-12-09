@@ -14,7 +14,25 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    <span >Hello {{  Auth::user()->is_admin == true ? 'Administrator' : '' }}  {{ Auth::user()->name }}, Welcome to {{ env('APP_NAME')}}</span>
+
+                    <hr>
+
+                    <div class="text-center container">
+                        <div class="row">
+                            <a href="{{ route( 'products.index', ['invenory' => true] ) }}" class="btn btn-outline-primary btn-block">
+                                ADD ITEMS TO YOUR INVENTORY
+                            </a>
+                        </div>
+                        <hr>
+                        <div class="h2">OR</div>
+                        <hr>
+                        <div class="row">
+                            <a href="/" class="btn btn-outline-primary btn-block">
+                                START SHOPPING
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
