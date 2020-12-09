@@ -9,7 +9,7 @@ class TagController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['admin'])->only(['destroy', 'edit', 'update']);
+        $this->middleware(['isadmin'])->only(['destroy', 'edit', 'update']);
     }
     /**
      * Display a listing of the resource.

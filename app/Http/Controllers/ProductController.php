@@ -110,7 +110,7 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy(Request $request, Product $product)
     {
         $product->delete();
         $request->session()->flash('status', "{$product->name} was removed");
