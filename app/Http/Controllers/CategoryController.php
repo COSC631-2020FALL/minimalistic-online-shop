@@ -46,7 +46,7 @@ class CategoryController extends Controller
 
         Category::create($request->all());
 
-        // TODO: Flush session
+        $request->session()->flash('status', "{$request->name} was created");
         return redirect()->route('categories.index');
     }
 
@@ -61,15 +61,15 @@ class CategoryController extends Controller
         $category->update($request->all());
 
         $category->save();
-        // TODO: Flush session
+        $request->session()->flash('status', "{$category->name} was updated");
         return redirect()->route('categories.index');
     }
 
-    public function destroy(Category $category)
+    public function destroy(Request $request,Category $category)
     {
 
         $category->delete();
-        // TODO: Flush session
+        $request->session()->flash('status', "{$category->name} was deleted");
 		return redirect()->route('categories.index');
     }
 }
