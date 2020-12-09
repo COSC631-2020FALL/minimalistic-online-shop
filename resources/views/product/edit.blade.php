@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-header">Edit {{$product->name}}</div>
                     <div class="card-body">
-                        <form action="{{ route('products.update', $product->id ) }}" method="POST">
+                        <form action="{{ route('products.update', $product->id ) }}" method="POST" enctype="multipart/form-data">
 
                                 @csrf
                                 @method('PUT')
@@ -38,10 +38,11 @@
                                         @enderror
                                     </div>
                                 </div>
+
                                 <div class="form-group row">
-                                    <label for="pimg" class="col-md-4 col-form-label text-md-right">Image URL</label>
+                                    <label for="img_url" class="col-md-4 col-form-label text-md-right">Image URL</label>
                                     <div class="col-md-6">
-                                        <input id="pimg" name="img_url" type="text" class="form-control @error('img_url') is-invalid @enderror"  value="{{ $product->img_url}}" required>
+                                        <input name="img_url" type="file" accept="image/*" class="form-control @error('img_url') is-invalid @enderror">
                                         @error('img_url')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -49,6 +50,7 @@
                                         @enderror
                                     </div>
                                 </div>
+
                                 <div class="form-group row">
                                     <label for="pprice" class="col-md-4 col-form-label text-md-right">Price</label>
                                     <div class="col-md-6">
@@ -80,8 +82,8 @@
                                 <div class="form-group row">
                                     <label for="quantity" class="col-md-4 col-form-label text-md-right">Quantity In Stock</label>
                                     <div class="col-md-6">
-                                        <input id="quantity" name="quantity" 
-                                               type="text" class="form-control @error('quantity') is-invalid @enderror"  
+                                        <input id="quantity" name="quantity"
+                                               type="text" class="form-control @error('quantity') is-invalid @enderror"
                                                value="{{ $product->quantity}}" required>
                                         @error('quantity')
                                             <span class="invalid-feedback" role="alert">

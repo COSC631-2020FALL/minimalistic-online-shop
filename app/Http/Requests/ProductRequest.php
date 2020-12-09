@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Product;
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Storage;
 
@@ -28,7 +29,7 @@ class ProductRequest extends FormRequest
         return [
             'name' => 'string|max:255',
             'description' => 'string|max:255',
-            'img_url' => 'required',
+            'img_url' => 'image|mimes:jpeg,png,jpg',
             'price' => 'required|numeric|gt:0|numeric',
             'owner_id' => 'required',
             'quantity' => 'required|numeric'

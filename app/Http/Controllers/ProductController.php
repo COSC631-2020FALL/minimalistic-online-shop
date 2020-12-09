@@ -94,6 +94,9 @@ class ProductController extends Controller
     {
 
         $product->update($request->except('tags'));
+        if ($request->has('img_url')){
+            $request->uploadImage($product)->storeImageUrlName();
+        }
 
         if ($request->tags){
             $product->tags()->sync($request->tags);
