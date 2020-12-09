@@ -100,7 +100,7 @@ class ProductController extends Controller
         }
 
         $product->save();
-
+        $request->session()->flash('status', "{$product->name} was updated");
         return redirect()->route('products.index', ['inventory' => true]);
     }
 
@@ -113,7 +113,7 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
-
+        $request->session()->flash('status', "{$product->name} was removed");
         return redirect()->route('products.index', ['inventory' => true]);
     }
 }
