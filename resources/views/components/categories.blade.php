@@ -1,16 +1,7 @@
-<nav >
+<nav class="m-5">
     <ul class="nav justify-content-center">
-        <li class="nav-item">
-            <a class="nav-link active" href="#">Shoes</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Shirts</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Books</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link disabled" href="#">Electronics</a>
-        </li>
+
+        @each('components.category-nav', App\Category::all(), 'category')
+
     </ul>
 </nav>
