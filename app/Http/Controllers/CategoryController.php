@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
-use App\Category;
+use \App\Category;
 
 
 class CategoryController extends Controller
@@ -32,7 +32,7 @@ class CategoryController extends Controller
 
     public function edit(Category $category)
     {
-        return view('category.edit', ['category', $category]);
+        return view('category.edit', ['category' => $category]);
     }
 
     public function store(Request $request)
