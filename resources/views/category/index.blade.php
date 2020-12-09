@@ -27,7 +27,7 @@
                                         <form name="form-{{ $category->id }}" action="{{ route('categories.destroy', $category->id) }}" method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="button" class="float-right btn btn-danger">DELETE</button>
+                                            <button type="submit" class="float-right btn btn-danger">DELETE</button>
                                         </form>
                                     </div>
                                </div>
