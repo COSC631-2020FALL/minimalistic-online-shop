@@ -38,6 +38,21 @@ class AppServiceProvider extends ServiceProvider
             return Auth::check() && Auth::user()->is_admin === 0;
         });
 
+        Blade::if('hasbought', function ($product) {
+
+            if (Auth::check()){
+                foreach(Auth()->user()->orders as $order) {
+                    if($order->products->contains($product->id)){
+                        //user has previously purchased the item
+                        return true;
+                    }
+                }
+            }
+
+
+            return false;
+        });
+
 		Schema::defaultStringLength(191);
 
     }
