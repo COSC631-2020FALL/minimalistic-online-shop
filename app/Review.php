@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Review extends Model
 {
+    use SoftDeletes;
     protected $fillable = [
         'rating','review','product_id','reviewer_id'
     ];

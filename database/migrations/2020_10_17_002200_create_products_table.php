@@ -23,6 +23,7 @@ class CreateProductsTable extends Migration
             $table->integer('owner_id')->unsigned();
             $table->integer('category_id')->unsigned()->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

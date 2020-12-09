@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+    use SoftDeletes;
     protected $fillable = [
         'name', 'description', 'img_url','price','owner_id','tag_id', 'quantity', 'category_id'
     ];

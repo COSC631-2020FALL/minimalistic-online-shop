@@ -20,6 +20,7 @@ class CreateReviewsTable extends Migration
             $table->integer('rating')->unsigned();
             $table->string('review', 255);
             $table->timestamps();
+            $table->softDeletes();
 	});
 
     }
