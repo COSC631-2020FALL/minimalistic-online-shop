@@ -13,11 +13,11 @@
                     </div>
 
                     <div class="card-body">
-
-                        @foreach ($categories ?? [] as $category)
-
+                        <ul class="list-group">
+                        @foreach ($categories as $category)
+                            <li class="list-group-item"> <span>{{ $category->name }}</span>  <a class="btn btn-primary float-right" href="{{ route('categories.edit', $category->id )}}">EDIT</a> </li>
                         @endforeach
-
+                        </ul>
                     </div>
                 </div>
             </div>
