@@ -15,7 +15,23 @@
                     <div class="card-body">
                         <ul class="list-group">
                         @foreach ($categories as $category)
-                            <li class="list-group-item"> <span>{{ $category->name }}</span>  <a class="btn btn-primary float-right" href="{{ route('categories.edit', $category->id )}}">EDIT</a> </li>
+                            <li class="list-group-item">
+                               <div class="row">
+                                    <div class="col-md-9">
+                                        <span class="float-left">{{ $category->name }}</span>
+                                    </div>
+
+
+                                    <div class="col-md-3">
+                                        <a class="btn btn-primary float-left" href="{{ route('categories.edit', $category->id )}}">EDIT</a>
+                                        <form name="form-{{ $category->id }}" action="{{ route('categories.destroy', $category->id) }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="button" class="float-right btn btn-danger">DELETE</button>
+                                        </form>
+                                    </div>
+                               </div>
+                            </li>
                         @endforeach
                         </ul>
                     </div>
