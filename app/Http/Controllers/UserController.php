@@ -125,7 +125,7 @@ class UserController extends Controller
             '';
 
         $user->save();
-
+        $request->session()->flash('status', "User information updated!");
         return redirect()->back();
     }
 	
