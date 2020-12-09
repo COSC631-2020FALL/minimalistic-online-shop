@@ -33,7 +33,7 @@ Route::resource('users', 'UserController');
 Route::resource('products', 'ProductController');
 Route::resource('tags', 'TagController');
 Route::resource('orders', 'OrderController')->only(['index', 'show']);
-Route::resource('reviews', 'ReviewController');
+Route::resource('reviews', 'ReviewController')->except(['create']);
 Route::resource('carts', 'CartController');
 
 Route::get('cart-checkout', 'CartController@checkout')->name('checkout');
