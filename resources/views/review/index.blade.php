@@ -9,8 +9,7 @@
                 @include('components.alert')
                 <div class="card">
                     <div class="card-header">
-                        <span>Reviews</span>
-                        <a href="{{ route('reviews.create') }}" class="btn btn-primary float-right">CREATE REVIEW</a>
+                        Reviews
                     </div>
 
                     <div class="card-body">

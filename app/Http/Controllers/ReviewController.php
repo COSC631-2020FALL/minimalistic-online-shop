@@ -27,18 +27,6 @@ class ReviewController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $products = Product::all();
-        $users     = User::all();
-        return view('review.create',['users' => $users , 'products' => $products]);
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -58,7 +46,7 @@ class ReviewController extends Controller
             'required'=>'You cannot leave a review for something you have not purhcased!'
         ];
         $request->request->remove('haspurchased');
-        
+
         $user = Auth::user();
         //has the user previously bought the item in question
         foreach($user->orders as $order) {
