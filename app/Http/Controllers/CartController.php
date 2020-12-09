@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Order;
 use App\Product;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
@@ -129,5 +132,36 @@ class CartController extends Controller
     public function checkout(){
 
         return view('checkout');
+    }
+
+    public function order_success(){
+        // remove items from cart to database
+        $cart_items = \Cart::getContent();
+
+        if ( Auth::check()){
+            $order = Order::create(['user_id' => Auth::user()->id ]);
+        } else {
+            $order = Order::create(['user_id' => factory(User::class)->create()->id ]);
+        }
+
+
+        foreach ($cart_items as $cart_item){
+            $product = $cart_item['associatedModel'];
+            $quantity = $cart_item['quantity'];
+            $product->quantity -= $quantity;
+            $product->save();
+
+            $product->orders()->attach(
+                $order,
+                [
+                    'quantity' => $quantity,
+                    'price' =>  $quantity * $product->price
+                ]
+            );
+        }
+
+        \Cart::clear();
+
+        return view('order.order-success', ['order' => $order]);
     }
 }

@@ -24,6 +24,8 @@
                     // This function shows a transaction success message to your buyer.
                     alert('Transaction completed by ' + details.payer.name.given_name);
 
+                    // Reroute to succefull checkout
+                    window.location.replace("{{ route( 'order-successfull' ) }}");
                 });
                 }
             }
