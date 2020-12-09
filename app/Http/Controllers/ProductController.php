@@ -56,6 +56,7 @@ class ProductController extends Controller
         $request->uploadImage($product)->storeImageUrlName();
         $product->tags()->sync($request->tags);
 
+        $request->session()->flash('status', "{$product->name} was created");
         return redirect()->route('products.index', ['inventory' => true]);
     }
 
