@@ -8,7 +8,7 @@
                     @include('components.alert')
 
                     <div class="row">
-                        <a class="btn btn-danger" href="{{ route('clear-cart') }}">CLEAR CART</a>
+                        <a class="btn btn-danger" {{count(\Cart::getContent()) == 0? 'hidden' : '' }} href="{{ route('clear-cart') }}">CLEAR CART</a>
                     </div>
                 </div>
                 <br>

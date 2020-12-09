@@ -10,6 +10,6 @@
     </span>
 
     <div class="form-group row">
-        <button name="review" type="submit" class="btn btn-primary">PROCEED CHECKOUT</button>
+        <button name="review" {{count(\Cart::getContent()) == 0? 'disabled' : '' }} type="submit" class="btn btn-primary">PROCEED CHECKOUT</button>
     </div>
 </form>
