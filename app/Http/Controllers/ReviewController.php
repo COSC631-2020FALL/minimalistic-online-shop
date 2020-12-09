@@ -125,7 +125,7 @@ class ReviewController extends Controller
      * @param  \App\Review  $review
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Review $review)
+    public function destroy(Request $request, Review $review)
     {
         $review->delete();
         $request->session()->flash('status', "Review deleted");
