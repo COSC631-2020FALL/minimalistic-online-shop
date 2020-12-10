@@ -44,7 +44,7 @@
                             <div class="form-group row">
                                 <label for="img_url" class="col-md-4 col-form-label text-md-right">Image URL</label>
                                 <div class="col-md-6">
-                                    <input value="{{ old('img_url') }}" name="img_url" type="file" type="image/*" class="form-control @error('img_url') is-invalid @enderror" required>
+                                    <input value="{{ old('img_url') }}" name="img_url" type="file" type="image/*" class="@error('img_url') is-invalid @enderror" required>
                                     @error('img_url')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
