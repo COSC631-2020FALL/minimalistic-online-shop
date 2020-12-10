@@ -6,6 +6,7 @@ use App\Http\Requests\ProductRequest;
 use App\Product;
 use App\User;
 use App\Tag;
+use App\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -32,6 +33,13 @@ class ProductController extends Controller
         return view('product.index', ['products' => $products, 'inventory' => $inventory]);
     }
 
+	 public function pagenate()
+	{
+		$inventory = false;
+		$products = Product::paginate(5);
+		return view('product.index', ['products' => $products, 'inventory' => $inventory]);
+	}
+	
     /**
      * Show the form for creating a new resource.
      *
@@ -40,7 +48,7 @@ class ProductController extends Controller
     public function create()
     {
 
-        return view('product.create',['user' => Auth::user(), 'tags' => Tag::all()]);
+        return view('product.create',['user' => Auth::user(), 'tags' => Tag::all(),'categories' => Category::all()]);
     }
 
     /**
@@ -52,10 +60,11 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
 
-        $product = Product::create($request->except('tags'));
-
+        $product = Product::create(array_merge($request->except('tags')));
+        $request->uploadImage($product)->storeImageUrlName();
         $product->tags()->sync($request->tags);
 
+        $request->session()->flash('status', "{$product->name} was created");
         return redirect()->route('products.index', ['inventory' => true]);
     }
 
@@ -79,7 +88,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('product.edit',['user' => Auth::user(), 'product' => $product, 'tags' => Tag::all()]);
+        return view('product.edit',['user' => Auth::user(), 'product' => $product, 'tags' => Tag::all(),'categories' => Category::all()]);
     }
 
     /**
@@ -93,13 +102,16 @@ class ProductController extends Controller
     {
 
         $product->update($request->except('tags'));
+        if ($request->has('img_url')){
+            $request->uploadImage($product)->storeImageUrlName();
+        }
 
         if ($request->tags){
             $product->tags()->sync($request->tags);
         }
 
         $product->save();
-
+        $request->session()->flash('status', "{$product->name} was updated");
         return redirect()->route('products.index', ['inventory' => true]);
     }
 
@@ -109,10 +121,10 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy(Request $request, Product $product)
     {
         $product->delete();
-
+        $request->session()->flash('status', "{$product->name} was removed");
         return redirect()->route('products.index', ['inventory' => true]);
     }
 }
