@@ -9,7 +9,7 @@
         @include('components.alert')
         @include('components.product')
 
-        @isnotadmin
+        
             @hasbought($product)
                 <form action="{{ route('reviews.store') }}" method="POST">
                     @csrf
@@ -35,7 +35,7 @@
                 </form>
             @endhasbought
             <hr>
-        @endisnotadmin
+        
 
          <div class="card">
              <div class="card-header"> Product Reviews </div>
