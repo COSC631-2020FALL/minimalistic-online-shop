@@ -18,8 +18,10 @@
                     <br>
                 @endif
 
-                @each('components.product', $products, 'product')
-
+                {{--@each('components.product', $products, 'product')--}}
+                @foreach($products as $product)
+                    @include('components.product',['product'=>$product,'inventory'=>$inventory])
+                @endforeach
             </div>
         </div>
     </div>

@@ -48,6 +48,7 @@
 
                         @auth
                             @isowner($product)
+                            @isset($inventory)
                                 <div class="btn-group mr-2">
                                     <a href="{{ route('products.edit', $product->id) }}" class="btn btn-outline-primary">EDIT</a>
                                 </div>
@@ -58,6 +59,7 @@
                                         <button type="submit" class="btn btn-outline-danger">DELETE</button>
                                     </form>
                                 </div>
+                            @endisset
                             @endisowner
                         @endauth
                     </div>
