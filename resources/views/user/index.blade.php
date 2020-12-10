@@ -33,7 +33,7 @@
                                         <form name="form-{{ $user->id }}" action="{{ route('users.destroy', $user->id) }}" method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="float-right btn btn-danger" >DELETE</button>
+                                            <button  {{ Auth::user()->id == $user->id || $user->is_admin ? 'disabled' : '' }} type="submit" class="float-right btn btn-danger" >DELETE</button>
                                         </form>
                                         <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary float-left">EDIT</a>
                                     </div>
