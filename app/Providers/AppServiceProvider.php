@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Blade::if('isowner', function ($product) {
-            return $product->owner->id === Auth::user()->id;
+            return $product->owner && $product->owner->id === Auth::user()->id;
         });
 
         Blade::if('isadmin', function () {
