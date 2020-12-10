@@ -23,7 +23,7 @@
 
                                     <div class="col-md-4">
                                         <span class="float-left">
-                                            <a href="{{ route('reviews.show', $review->for_product )}}"> {{ $review->for_product->name}}  </a>
+                                            <a href="{{ route('products.show', $review->for_product )}}"> {{ $review->for_product->name}}  </a>
                                         </span>
                                     </div>
 
