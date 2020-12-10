@@ -54,7 +54,7 @@ class ProductRequest extends FormRequest
 
     public function storeImageUrlName()
     {
-        $this->product->img_url = asset(Storage::url('products/'.$this->product->name));
+        $this->product->img_url = asset(Storage::url('products/'.$this->product->name.'_'.$this->product->id));
         $this->product->save();
     }
 }
