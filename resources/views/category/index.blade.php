@@ -3,7 +3,6 @@
 @section('content')
 
     <div class="container">
-        @include('components.alert')
         <div class="row justify-content-center">
             @include('components.left-nav')
             <div class="col-md-8">
