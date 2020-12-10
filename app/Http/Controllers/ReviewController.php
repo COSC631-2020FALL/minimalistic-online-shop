@@ -22,7 +22,7 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        $reviews = Review::with(['review_owner'])->get();
+        $reviews = Review::with('review_owner')->has('review_owner')->get();
         return view('review.index', ['reviews' => $reviews]);
     }
 
