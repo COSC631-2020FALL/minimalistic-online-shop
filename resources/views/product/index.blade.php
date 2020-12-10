@@ -8,20 +8,28 @@
             <div class="col-md-8">
 
                 @include('components.alert')
-
-                @if ($inventory == true)
+                
+                @if($inventory == true)
+                @auth
                     <div>
                         <a href="{{ route("products.create") }}">
                             <button class="btn btn-primary" type="submit">ADD PRODUCTS</button>
                         </a>
                     </div>
                     <br>
+                @endauth
                 @endif
-
-                {{--@each('components.product', $products, 'product')--}}
-                @foreach(\App\Product::with('category')->has('category')->get() as $product)
-                    @include('components.product',['product'=>$product,'inventory'=>$inventory])
-                @endforeach
+                @if($inventory == true)
+                    @auth
+                    @foreach(Auth::user()->products()->with('category')->has('category')->get() as $product)
+                        @include('components.product',['product'=>$product,'inventory'=>$inventory])
+                    @endforeach
+                    @endauth
+                @else       
+                    @foreach(\App\Product::with('category')->has('category')->get() as $product)
+                        @include('components.product',['product'=>$product,'inventory'=>$inventory])
+                    @endforeach
+                @endif
             </div>
         </div>
     </div>
