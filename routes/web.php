@@ -29,7 +29,7 @@ Route::get('/search',function(Request $request) {
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('users', 'UserController');
+Route::resource('users', 'UserController')->except(['create', 'store']);
 Route::resource('products', 'ProductController');
 Route::resource('tags', 'TagController');
 Route::resource('orders', 'OrderController')->only(['index', 'show']);
