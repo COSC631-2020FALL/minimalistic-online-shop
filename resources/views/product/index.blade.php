@@ -19,7 +19,7 @@
                 @endif
 
                 {{--@each('components.product', $products, 'product')--}}
-                @foreach($products as $product)
+                @foreach(\App\Product::with('category')->has('category')->get() as $product)
                     @include('components.product',['product'=>$product,'inventory'=>$inventory])
                 @endforeach
             </div>
