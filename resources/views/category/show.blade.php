@@ -4,9 +4,9 @@
 
 
 <div class="container">
+        @include('components.alert')
         <div class="row justify-content-center">
             @include('components.left-nav')
-
             <div class="col-md-8">
                 <div class="h2 mb-4 text-center">
                     {{ $category->name }}
