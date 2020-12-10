@@ -34,7 +34,7 @@
                                             @method('DELETE')
                                             <button type="submit" class="float-right btn btn-danger" >DELETE</button>
                                         </form>
-                                        <a href="{{ route('users.edit', $review->id) }}" class="btn btn-primary float-left">EDIT</a>
+                                        <a href="{{ route('reviews.edit', $review->id) }}" class="btn btn-primary float-left">EDIT</a>
                                     </div>
                                 </div>
                             </li>

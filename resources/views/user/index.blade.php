@@ -11,7 +11,6 @@
                 <div class="card">
                     <div class="card-header">
                         <span>Registered Users</span>
-                        <a href="{{ route('users.create') }}" class="btn btn-primary float-right">CREATE USER</a>
                     </div>
 
                     <div class="card-body">

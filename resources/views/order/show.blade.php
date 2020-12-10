@@ -27,22 +27,42 @@
                 </div>
                 <hr>
                 <div class="card">
-                    <div class="card-header">Ordered Items</div>
+                    <div class="card-header">Ordered Products</div>
 
                     <div class="card-body">
                         @if ($order->products->count() == 0)
                             <p>This order does not have any products yet. </p>
                         @else
                             <ul class="list-group list-group-flush">
-                                @foreach ($order->products as $product)
-                                    <li class="list-group-item">
-                                        <a href="{{ route("products.show", $product->id) }}">
-                                            <span class="float-left">{{ $product->name }}</span>
-                                            <span class="float-center">{{ $product->pivot->price }}</span>
-                                            <span class="float-right">{{ $product->pivot->quantity }}</span>
-                                        </a>
-                                    </li>
-                                @endforeach
+                            @foreach ($order->products as $product)
+
+
+                                <li class="list-group-item">
+
+                                    <div class="row">
+
+                                        <div class="col-md-5">
+                                            <span class="float-left">
+                                                <a href="{{ route('products.show', $product->id) }}">{{ $product->name }}</a>
+                                            </span>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <span class="float-left">
+                                                {{ $product->pivot->price }}
+                                            </span>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <span class="float-left">
+                                                {{ $product->pivot->quantity }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </li>
+                            @endforeach
+
+
                             </ul>
                         @endif
                     </div>
