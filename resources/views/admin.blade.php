@@ -8,10 +8,10 @@
             @include('components.left-nav')
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Checkout</div>
+                    <div class="card-header">Administrator Dashboard</div>
 
                     <div class="card-body text-center">
-                        <button class="btn btn-outline-primary">CONFIRM CHECKOUT</button>
+                        <button class="h1 btn btn-outline-primary btn-lg">Welcome to your Admin Dashboard</button>
                     </div>
                 </div>
             </div>
