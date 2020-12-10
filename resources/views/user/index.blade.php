@@ -15,34 +15,33 @@
                     </div>
 
                     <div class="card-body">
-                       <table>
 
-                            <tr>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Address</th>
-                                <th>Actions</th>
-                            </tr>
+                        <ul class="list-group">
+                        @foreach ($users as $user)
+                            <li class="list-group-item">
 
-                            @foreach ($users as $user)
-                            <tr>
-                                <td> <a href="{{ route('users.show', $user->id )}}"> {{ $user->name}}  </a></td>
-                                <td>{{ $user->email}}</td>
-                                <td>{{ $user->address_1}}</td>
-                                <td>
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <span class="float-left">
+                                            <a href="{{ route('users.show', $user->id )}}"> {{ $user->name}}  </a>
+                                        </span>
+                                    </div>
 
-                                    <form action="{{ route('users.destroy', $user->id) }}" method="post">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger" >DELETE</button>
-                                    </form>
 
-                                    <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary float-right">EDIT</a>
+                                    <div class="col-md-3">
 
-                                </td>
-                            </tr>
+                                        <form name="form-{{ $user->id }}" action="{{ route('users.destroy', $user->id) }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button  {{ Auth::user()->id == $user->id || $user->is_admin ? 'disabled' : '' }} type="submit" class="float-right btn btn-danger" >DELETE</button>
+                                        </form>
+                                        <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary float-left">EDIT</a>
+                                    </div>
+                                </div>
+                            </li>
                             @endforeach
-                       </table>
+                        </ul>
+
                     </div>
                 </div>
             </div>

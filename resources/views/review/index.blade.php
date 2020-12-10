@@ -8,38 +8,38 @@
             <div class="col-md-8">
                 @include('components.alert')
                 <div class="card">
-                    <div class="card-header">
-                        Reviews
-                    </div>
-
+                    <div class="card-header">Product Reviews</div>
                     <div class="card-body">
-                       <table>
+                        <ul class="list-group">
+                        @foreach ($reviews as $review)
+                            <li class="list-group-item">
 
-                            <tr>
-                                <th>Review From</th>
-                                <th>Review For</th>
-                                <th>Rating</th>
-                                <th>Review</th>
-                                <th>Edit Entry</th>
-                            </tr>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <span class="float-left">
+                                            <a href="{{ route('reviews.show', $review->id )}}"> {{ $review->review}}  </a>
+                                        </span>
+                                    </div>
 
-                            @foreach ($reviews as $review)
-                            <tr>
-                                <td>{{ $review->review_owner->name }}</td>
-                                <td>{{ $review->for_product->name }}</td>
-                                <td>{{ $review->rating}}</td>
-                                <td>{{ $review->review}}</td>
-                                <td>
-                                    <form action="{{ route('reviews.destroy', $review->id) }}" method="post">
+                                    <div class="col-md-4">
+                                        <span class="float-left">
+                                            <a href="{{ route('products.show', $review->for_product )}}"> {{ $review->for_product->name}}  </a>
+                                        </span>
+                                    </div>
+
+                                    <div class="col-md-3">
+
+                                        <form name="form-{{ $review->id }}" action="{{ route('reviews.destroy', $review->id) }}" method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger" >DELETE</button>
-                                    </form>
-                                    <a href="{{ route('reviews.edit', $review->id) }}" class="btn btn-primary float-right">EDIT</a>
-                                </td>
-                            </tr>
+                                            <button type="submit" class="float-right btn btn-danger" >DELETE</button>
+                                        </form>
+                                        <a href="{{ route('users.edit', $review->id) }}" class="btn btn-primary float-left">EDIT</a>
+                                    </div>
+                                </div>
+                            </li>
                             @endforeach
-                       </table>
+                        </ul>
                     </div>
                 </div>
             </div>

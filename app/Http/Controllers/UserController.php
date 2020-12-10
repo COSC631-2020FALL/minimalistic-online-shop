@@ -65,7 +65,7 @@ class UserController extends Controller
     public function show(User $user)
     {
 
-        if ($this->is_logged_in_user($user))
+        if ($this->is_logged_in_user($user) || Auth::user()->is_admin == 1)
             return view('user.show', ['user' => $user]);
 
         return redirect()->back();
@@ -79,9 +79,9 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        if ($this->is_logged_in_user($user)){
+        if ($this->is_logged_in_user($user) || Auth::user()->is_admin == 1)
             return view('user.edit', ['user' => $user]);
-        }
+
         return redirect()->back();
     }
 
@@ -96,8 +96,6 @@ class UserController extends Controller
     {
 
         // validate
-
-
         if ($request->password) {
             $rules = [
                 'name'      => 'required|string|max:255',
@@ -128,46 +126,7 @@ class UserController extends Controller
         $request->session()->flash('status', "User information updated!");
         return redirect()->back();
     }
-	
-    public function search(Request $r){
-        $category ;
-        $name ;
-        if($r->query("c")){
-            $category = $r->query("c");
-        }
-        if($r->query("n")){
-            $name = $r->query("n");
-        }
-        $res = Product::all();
-        $cat = Category::all();
 
-        if(isset($category) && isset($name)){
-            $name = strtolower($name);
-            $sRes = DB::select( DB::raw("SELECT * FROM `products` WHERE lower(name) like '%$name%' and category_id = $category" ) );
-        }
-        else if(isset($name)){
-            $name = strtolower($name);
-            $sRes = DB::select( DB::raw("SELECT * FROM `products` WHERE lower(name) like '%$name%'" ) );
-        }
-        else if(isset($category)){
-            $sRes = DB::table('products')
-            ->where("category_id" , $category)
-            ->get();
-        }
-        else{
-            $sRes = DB::table('products')
-            ->get();
-        }
-
-        if(!isset($category)) {
-            $category = -1;
-        }
-
-    	return view('store.search')
-            ->with('products', $sRes)
-            ->with("cat", $cat)
-            ->with("a", $category);
-    }
     /**
      * Remove the specified resource from storage.
      *
