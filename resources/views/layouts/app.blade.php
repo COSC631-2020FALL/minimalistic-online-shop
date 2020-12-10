@@ -51,7 +51,7 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('carts.index') }}">@include('icons.cart')</a>
+                            <a class="nav-link" href="{{ route('carts.index') }}"> @if(count(\Cart::getContent()) == 0) @include('icons.cart') @else @include('icons.filled-cart')  @endif</a>
                         </li>
                         @guest
                             <li class="nav-item">
